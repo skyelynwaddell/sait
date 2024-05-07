@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Relational Databases</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/sait/index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+        <div>
+            <h1>Relational Databases</h1>
+            </div>
+            
+            <div>
+                <h1><a href="./docs">Documentation</a></h1>
+                <h2>
+                    A collection of data & info organized into tables with columns and rows.
+                    <br>
+                    Situation description has nouns, verbs, and modifiers.
+                    <br>
+                    <br>
+                    Every table should have a unique id.
+                    <br>
+                    Table Types:
+                    <br>
+                    NN : Not Null.
+                    <br> 
+                    ND : No Duplicates.
+                    <br>
+                    PK : Primary Key.
+                    <br>
+                    FK : Foreign Key.
+                    <br>
+                    <br>
+                    Primary Keys : 
+                    <br>
+                    Every table must have a primary key.
+                    <br>
+                    Primary keys must not be null, must never be duplicated.
+                    <br>
+                    Multi-column primary key cans have duplicates in each single column, never in all columns combined.
+                    <br>
+                    Primary keys must never be changed, for example a user can never change their email, but they can delete it and remake it, or make a new email all together.
+                    <br>
+                    <br>
+                    Noun: Identify the things we need to keep info about.
+                    <br>
+                    Verbs: Show how these things relate to or interact with each other.
+                    <br>
+                    Modifiers: Are individual data items that describe each of the thing in more detail.
+                    <br>
+                    Entity: Name of table including all fields.
+                    <br>
+                    Body: Record.
+                    <br>
+                    Relation : Is connection between two tables.
+                    <br>
+                    Attributes: A field in a table.
+                    <br>
+                    Primary Key: Unique ID of a table.
+                    <br>
+                    Foreign Key: The unique id of another table, but can be unique.
+                    <br>
+                    Composite Key: Usually has many - to - many relationships.
+                    <br>
+                    Say if there was no unique key , you can combine multiple fields of keys to make a unique an entry.
+                    <br>
+                    
+                    <br>
+                    Table Rules:
+                    <br>
+                    1. Table names must be unique.
+                    <br>
+                    2. Column names must be unique within a table.
+                    <br>
+                    3. Rows must be unique.
+                    <br>
+                    4. Columns must be non-decomposable. Should be as small as possible (ie. Name should be split in firstName and lastName)
+                    <br>
+                    5. Columns and Rows can be in any order.
+                    <br>
+                    <br>
+                    Relationship details:
+                    <br>
+                    1:1 The entity and object can only have 1 relationship.
+                    ie. License plate can only be assigned to one car, and a car can only be assigned to one license plate. 
+                    <br>
+                    1:M Entity one can have many relationships with an object that can only have 1 relationship with entity / vice versa.  
+                    ie. A student can have 
+                    <br>
+                    M:M Entity and Object may both have multiple relationships.
+                    ie. A Purchase order can have multiple items, and Users can have multiple Purchases.
+                    <br>
+                    <br>
+                    Entity Relationship Diagram (erd)
+                    <img style="width:700px" src="./img/erd.png">
+
+                    <br>
+                    <br>
+                    Normalization: is the steps/rules/practice to reduce redundancy and null values truly.
+                    <br>
+                    NF (stand for Normal Form)
+                    <br>
+                    <img src="./img/relationship_normalization.png"> 
+                    <br>
+                    Developed by DR. E.F. Codd from IBM in 1970.
+                    <br>
+                    A progressive refinement of database structures.
+                    <br>
+                    Transforms complex data structures into simple data structs. 
+                    <br>
+                    To minimize redundant data.
+                    <br>
+                    Minimize NULL values.
+                    <br>
+                    Enable Extensions without needing major redesign.
+                    <br>
+                    minimize modification anomalies.
+                    <br>
+                    Make queries easier and less limited.
+                    <br><br>
+                    Three main forms of normalization:
+                    <br>
+                    First Normal Form: No repeating columns. Primary key must be unique.
+                    <br>
+                    Second Normal Form: Every non key column identified by the entire primary key. (this comes into effect when we have a multi-column primary key)
+                    <br>
+                    Third Normal Form: Every non key column depends on only the primary key.
+                    <br>
+                    If a non-key column is uniquely identified by another non-key column it should be moved to a table that is keyed by that column.
+                    <br>
+                    <br>
+                    What is an Entity Relationship Diagram
+                    <br>
+                    A map of a database that shows all the relationships between the different tables inside the database.
+                    <br>
+                    - A variety of formats.
+                    <br>
+                    - No single industry standards.
+                    <br>
+                    - Each company will have its own standard depending on the tool they use.
+                    <br>
+                    You can use Draw.IO or Microsoft Visio to create an ERD.
+                    <br>
+                    <br>
+                    ER Diagram Attributes:
+                    <br>
+                    - Listed below Entity name.
+                    <br>
+                    # : Unique identifier.
+                    * : Mandatory attribute.
+                    o : Optional attribute.
+                    <br>
+                    example:
+                    <br>
+                    Product Table = {
+                        #* SKU, (must be unique, and is mandatory)
+                        ProductName, 
+                        o Description Name,
+                    }
+
+                    <br>
+                    Common naming conventions used in ERD.
+                    <br>
+                    1   (can only have 1 emergency contact and is required)
+                    <br>
+                    0-1 (is optional to choose)
+                    <br>
+                    1-M (must have atleast 1) (same as below)
+                    <br>
+                    1-* (must have atleast 1)
+                    <br><br>
+                    Entity relationship symbols : 
+                    <br>
+                    Crowfoot = Many
+                    <br>
+                    | Dash = 1 Mandatory.
+                    <br>
+                    0 = zero / optional.
+                    0 | = Can have 0 to 1.
+                    0 Crowfoot = can have 0 to many
+                    <br>
+            
+                </h2>
+            </div>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>
+
+
+

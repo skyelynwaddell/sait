@@ -1,0 +1,91 @@
+Our travel agency has 4 agents. We will need to display their Rate of Pay. 
+We will need available booking times and a count of seats per flight that can be bought.
+For vacations we would like to display all the content of the location they are traveling,
+such as the Place Name, Duration of Stay, and a short blurb describing the vacation.
+We would like to also display the package price. I'd like to also display all the customers, and their data
+including the package history, and any current packages.
+Each individual will display their full name, family size, amount of pets, and account details including
+username and password.
+
+Entities:
+- Agents 
+- Packages
+- Customer
+- Sales
+
+Attributes:
+- Agents {
+    id,
+    firstName,
+    lastName,
+    rate,
+    hours,
+    customerCount,
+    location,
+}
+
+- Packages {
+    id,
+    name,
+    agentID,
+    price,
+    location,
+    durationOfStay,
+    description,
+    hotelStarRating,
+}
+
+- Customer {
+    id,
+    firstName,
+    lastName,
+    username,
+    email,
+    password,
+    phone,
+    budget,
+    travelHistory,
+    amountOfAdults,
+    amountOfChildren,
+    amountOfPets,
+    packages,
+}
+
+- Sales {
+    id,
+    agentID,
+    customerID,
+    dateOfPurchase,
+    packageID,
+}
+
+Relationships {
+    agent.id        => primary key       (one to one)
+    package.agentID => foreign key       (one to one)
+    customer.id     => sales.customerID  (one to one)
+    agent.id        => sales.agentID     (one to one)
+    packageID       => sales.packageID   (one to one)
+}
+
+//example data from the short description.
+
+Agent = {
+    id        : 0,
+    firstName : Bob,
+    lastName  : Dillon,
+    rate      : 25,
+    hours     : 90,
+    location  : "Canada"
+}
+
+Package = {
+    id              : 0,
+    agentID         : 0,
+    name            : "Family Stay Package",
+    price           : 500,
+    location        : "Canada",
+    durationOfStay  : 25,
+    description     : "The best vacation in the world.",
+    hotelStarRating : 5,
+
+}
