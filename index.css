@@ -1,7 +1,23 @@
-.montserrat {
+h1, h2 {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 10;
+    font-weight: bold;
     font-style: normal;
+    color:rgb(255, 255, 255)
   }
-  
+
+  h2 {
+    font-size: medium;
+  }
+
+body{
+  background-color: rgb(40, 40, 40);
+}
+
+a{
+  color:rgb(255, 71, 255);
+}
+
+.img{
+  width:40rem;
+}

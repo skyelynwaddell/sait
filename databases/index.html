@@ -22,7 +22,10 @@
             </div>
             
             <div>
-                <h1><a href="./docs">Documentation</a></h1>
+                <navbar>
+                    <h2><a href="./docs">Docs</a></h2>
+                </navbar>
+                
                 <h2>
                     A collection of data & info organized into tables with columns and rows.
                     <br>
@@ -53,6 +56,8 @@
                     Primary keys must never be changed, for example a user can never change their email, but they can delete it and remake it, or make a new email all together.
                     <br>
                     <br>
+                    Modifiers/Attributes: A field in a table. Individual data items that describe their Entities. ie. a Student's name would be an Attribute of that student. ie. Size of an item, quantity on hand of said item.
+                    <br>
                     Noun: Identify the things we need to keep info about.
                     <br>
                     Verbs: Show how these things relate to or interact with each other.
@@ -65,13 +70,15 @@
                     <br>
                     Relation : Is connection between two tables.
                     <br>
-                    Attributes: A field in a table.
+                    UA : User Assigned
+                    <br>
+                    SA : System Assigned
                     <br>
                     Primary Key: Unique ID of a table.
                     <br>
                     Foreign Key: The unique id of another table, but can be unique.
                     <br>
-                    Composite Key: Usually has many - to - many relationships.
+                    Composite Key: Usually has many - to - many relationships. These are a few fields that when put together would be a unique value that no one else could have , and you're able to query the database with this composite key.
                     <br>
                     Say if there was no unique key , you can combine multiple fields of keys to make a unique an entry.
                     <br>
@@ -103,15 +110,21 @@
                     <br>
                     <br>
                     Entity Relationship Diagram (erd)
-                    <img style="width:700px" src="./img/erd.png">
-
+                    <br>
+                    <img class="img" src="./img/erd.png">
+                    
                     <br>
                     <br>
-                    Normalization: is the steps/rules/practice to reduce redundancy and null values truly.
+                    Travel Agency ERD:
+                    <br>
+                    <img class="img" src="./docs/travelAgencyErd2.png">
+                    <br>
+                    <br>
+                    Normalization: is the steps/rules/practice to reduce redundancy and null values.
                     <br>
                     NF (stand for Normal Form)
                     <br>
-                    <img src="./img/relationship_normalization.png"> 
+                    <img class="img" src="./img/relationship_normalization.png"> 
                     <br>
                     Developed by DR. E.F. Codd from IBM in 1970.
                     <br>
@@ -128,6 +141,10 @@
                     minimize modification anomalies.
                     <br>
                     Make queries easier and less limited.
+                    <br>
+                    The main goal of this normalization is basically to seperate a table from including too much data, and to split it down amongst other smaller tables.
+                    <br>
+                    As De-Normalization is the process of adding say some "redundant" data to another table of the database, because it may be easier to retrieve from there, instead of having to do 2 queries for example. So you should know when to use normalization, and when are the times you should de-normalize. It is up to you as the designer to come up with the routing and proper data structures that should be implemented.
                     <br><br>
                     Three main forms of normalization:
                     <br>
@@ -146,7 +163,7 @@
                     <br>
                     - A variety of formats.
                     <br>
-                    - No single industry standards.
+                    - No single industry standard to create an ERD.
                     <br>
                     - Each company will have its own standard depending on the tool they use.
                     <br>
@@ -163,34 +180,155 @@
                     <br>
                     example:
                     <br>
+                    <br>
                     Product Table = {
+                        <br>
                         #* SKU, (must be unique, and is mandatory)
+                        <br>
                         ProductName, 
-                        o Description Name,
+                        <br>
+                        0 Description Name,
+                        <br>
                     }
-
+                    <br>
                     <br>
                     Common naming conventions used in ERD.
                     <br>
-                    1   (can only have 1 emergency contact and is required)
+                    #* Must be Unique, and is mandatory.
+                    <br>
+                    1 (can only have 1 of this (ie, only 1 emergency contact) and is required)
                     <br>
                     0-1 (is optional to choose)
                     <br>
-                    1-M (must have atleast 1) (same as below)
-                    <br>
-                    1-* (must have atleast 1)
+                    1-M OR 1-* (must have atleast 1) (same as below)
                     <br><br>
                     Entity relationship symbols : 
                     <br>
                     Crowfoot = Many
                     <br>
-                    | Dash = 1 Mandatory.
+                    |Dash = 1 Mandatory
                     <br>
-                    0 = zero / optional.
-                    0 | = Can have 0 to 1.
+                    0 = zero / optional
+                    <br>
+                    0 |Dash = Can have 0 to 1
+                    <br>
                     0 Crowfoot = can have 0 to many
                     <br>
-            
+                    <img class="img" src="./img/erd_notations.png">
+                    <br>
+                    <br>
+                    Bridging:
+                    <br>
+                    1st Normalization Form <br>
+                    1NF - No repeating columns.
+                    <br>
+                    Process of breaking down tables into multiple smaller tables to reduce redundancy.
+                    
+                    <br>
+                    2nd Normalization Form <br>
+                    2NF - To move data into the other smaller tables where they should belong. It should be directly associated with their Entity / Table (this usually happens automatically when you're doing the first normalization form.)
+                    <br>
+                    This comes into effect when we have a multi-column primary key.
+                    <br>
+                    3rd Normalization Form <br>
+                    3NF - To have attributes only in their corresponding Entity table, and then use bridging/connections and primary key's to access their data.
+                    <br>
+                    By modeling to the 3rd NF you have added more tables and reduced nulls and data redundancy.
+                    <br><br>
+
+                    Using 0 is represented that an attribute is optional. <br>
+
+                    minValue...maxValue (ie. 1...10) another form of entity relationship notations instead of crowfoot.
+                    <br>
+                    If a bridging table has a 1 to many relationship with it's bridged tables, the children tables mostly likely have a many-to-many relationship.
+                    <br><br>
+
+                    SQL / SEQUEL : <br>
+                    Statements/Function of SQL: <br><br>
+
+                    <b><u>SELECT (Select whole or specific attribute/field.)</u></b> 
+                    <br>
+                    Retrieve data from one or more tables of a database. <br>
+                    Data in the database is NOT changed by a SELECT statement. <br>
+                    Data retrieved from Multiple Tables with a JOIN statement. <br>
+                    
+                    <br>
+                    <u>INSERT</u> (Insert field/attribute to a entity/table)<br>
+                    INSERT INTO CreditCard (ExpiryData, Balance, CreditLimit) <br>
+                    VALUES ("31/12/2000", 500, 2000)
+                    <br><br>
+
+                    <u>UPDATE</u> (Update a table's field / entity's attribute) <br>
+                    UPDATE Products <br>
+                    SET UnitPrice = UnitPrice + 0.1, AvailableQty = 100 <br>
+                    WHERE ProductID > 10 <br>
+
+                    <br>
+                    <u>DELETE</u> (Deletes whole row)<br>
+                    DELETE * from Products <br>
+                    WHERE UnitPrice > 1 
+                    
+                    <br><br>
+                    Example of some SQL queries<br> <br>
+                    SELECT {criteria} FROM {tableName} <br>
+                    WHERE {criteria} <br>
+                    ORDER BY {columnName [ASC | DESC]} <br><br>
+
+                    SELECT * FROM Product <br><br>
+
+                    SELECT ProductID, UnitPrice  <br>
+                    FROM Products <br>
+                    WHERE (ProductID=123) <br>
+                    <br>
+                    Return the named columns in the order specified for product id 123 <br>
+                    <br>
+
+                    Examples of filtered SELECT statements: <br>
+                    SELECT * FROM Products <br>
+                    WHERE UnitPrice > 10 <br>
+                    Select all columns and only rows which satisfy the condition unitprice > 10 <br>
+
+                    <br> 
+                    <u>Sort Student FirstName in ascending order alphabetically. </u><br>
+                    SELECT * <br>
+                    FROM Student <br>
+                    ORDER BY FirstName Asc;      <br>   
+
+                    <br> 
+                    <u>Sort Student FirstName in descending order alphabetically.</u> <br>
+                    SELECT * <br>
+                    FROM Student <br>
+                    ORDER BY FirstName Desc;      <br>       <br>
+                    
+                    (Select any word that starts with letter A but the rest of letters can be any.)
+                    SELECT * <br>
+                    FROM Student <br>
+                    WHERE (((Student.FirstName) Like "A*")) <br>
+                    ORDER BY Student.FirstName; <br>
+
+                    <br>
+                    <u>Select Date Criteria</u><br>
+                    SELECT Student.FirstName, Student.DoB, * <br>
+                    FROM Student <br>
+                    WHERE (((Student.FirstName) Like "A*") AND ((Student.DoB)>#3/23/2023#)) <br>
+                    ORDER BY Student.FirstName; <br>
+                    <br>
+
+                    JOIN statements: <br><br>
+                    JOIN        : 
+                    <br>
+                    INNER JOIN  : 
+                    <br>
+                    LEFT JOIN   : 
+                    <br>
+                    RIGHT JOIN  : 
+                    <br>
+                    OUTTER JOIN :
+                    <br>
+
+
+
+
                 </h2>
             </div>
         <!--[if lt IE 7]>

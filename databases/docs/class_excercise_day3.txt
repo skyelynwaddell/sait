@@ -1,0 +1,51 @@
+Entities {
+    - Directors
+    - Participants
+    - Students
+    - Instruments
+    - Teachers
+    - Composition Catalog
+
+}
+
+Attributes Directors {
+
+}
+
+Students {
+    StudentID,
+    First,
+    Last,
+    Age,
+    CompetitionCategory,
+
+}
+
+Instruments {
+    type,
+
+}
+
+Attributes Participants {
+
+}
+
+Attributes Competitions {
+
+}
+
+Attibutes Teachers {
+    Class,
+    Name,
+    Studio,
+
+    
+}
+
+Attributes Composition Catalog {
+    Piece,
+    Composer,
+    Title,
+    Genre,
+    PublishDate,
+}
