@@ -23,6 +23,7 @@
             
             <div>
                 <navbar>
+                    <h2><a href="./">Home</a></h2>
                     <h2><a href="./docs">Docs</a></h2>
                 </navbar>
                 
@@ -44,8 +45,26 @@
                     <br>
                     FK : Foreign Key.
                     <br>
+                    Cardinality: Can describe relationships (ie. 1 to many, many to many, etc.).
+                    <br>
+                    Cardinality can also be used in the POST-DEVELOPMENT to say how many entries a table has. (ie. Player1, Player2, Player3 = cardinality of 3)
+                    <br>
+                    Degrees : Can be described as how many ATTRIBUTES an entry in a database table has. (ie. First, Last, Phone, Email = 4 degrees)
+                    <br>
+                    RDBMS : Relational Database Management System.
+                    <br>
+                    <br>
+                    Conditions for a table in a database: <br>
+                    - Table name is unique. <br>
+                    - Each column within the table has a unique name. <br>
+                    - Order of columns is irrelevant. <br>
+                    - All rows of the table have the same format. <br>
+                    - No two rows in a table are identical. <br>
+                    <br>
                     <br>
                     Primary Keys : 
+                    <br>
+                    - If it is a Many To One notation / relationship, then the the ONE attribute must be a unique key.
                     <br>
                     Every table must have a primary key.
                     <br>
@@ -58,27 +77,35 @@
                     <br>
                     Modifiers/Attributes: A field in a table. Individual data items that describe their Entities. ie. a Student's name would be an Attribute of that student. ie. Size of an item, quantity on hand of said item.
                     <br>
+                    <br>
                     Noun: Identify the things we need to keep info about.
+                    <br>
                     <br>
                     Verbs: Show how these things relate to or interact with each other.
                     <br>
-                    Modifiers: Are individual data items that describe each of the thing in more detail.
                     <br>
                     Entity: Name of table including all fields.
                     <br>
+                    <br>
                     Body: Record.
                     <br>
+                    <br>
                     Relation : Is connection between two tables.
+                    <br>
                     <br>
                     UA : User Assigned
                     <br>
                     SA : System Assigned
                     <br>
+                    <br>
                     Primary Key: Unique ID of a table.
+                    <br>
                     <br>
                     Foreign Key: The unique id of another table, but can be unique.
                     <br>
+                    <br>
                     Composite Key: Usually has many - to - many relationships. These are a few fields that when put together would be a unique value that no one else could have , and you're able to query the database with this composite key.
+                    <br>
                     <br>
                     Say if there was no unique key , you can combine multiple fields of keys to make a unique an entry.
                     <br>
@@ -243,10 +270,10 @@
                     If a bridging table has a 1 to many relationship with it's bridged tables, the children tables mostly likely have a many-to-many relationship.
                     <br><br>
 
-                    SQL / SEQUEL : <br>
+                    <u>SQL / SEQUEL</u> <br>
                     Statements/Function of SQL: <br><br>
 
-                    <b><u>SELECT (Select whole or specific attribute/field.)</u></b> 
+                    <b><u>SELECT </u>(Select whole or specific attribute/field.)</b> 
                     <br>
                     Retrieve data from one or more tables of a database. <br>
                     Data in the database is NOT changed by a SELECT statement. <br>
