@@ -30,13 +30,38 @@ th{
 }
 
 .container, .navbar{
-    min-width:30rem;
-    max-width:40rem;
+    min-width:100%;
     justify-content: center;
     text-align: center;
     margin: auto;
     padding:0;
 
+}
+
+.inputTypes{
+    margin: auto;
+    padding-top: 20px;
+}
+
+.registerForms{
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+}
+
+.registerText, .inputBox{
+    margin-bottom: 10px;
+}
+
+.form{
+    align-items: center;
+}
+
+button{
+    margin-top:10px;
 }
 
 .navbar{
@@ -51,7 +76,7 @@ th{
 }
 
 .inner-container{
-    width:28rem;
+    width:100%;
     margin: auto;
 }
 
@@ -76,8 +101,6 @@ footer{
     margin-top:auto;
     text-align:center;
     padding:15px;
-    min-width: 30rem;
-    max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
