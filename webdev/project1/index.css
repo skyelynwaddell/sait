@@ -21,11 +21,13 @@ table {
   border-spacing: 10px;
 }
 
+
 th,
 td {
   padding: 8px;
   text-align: left;
   border-radius: 10px;
+ 
 }
 
 th {
@@ -100,9 +102,20 @@ th {
   text-align: center;
 }
 
+
+.registerLabel{
+  display: inline-block;
+  width: 100px;
+  text-align: left;
+}
+
+.inputBox,select{
+  width:150px;
+}
+
 .registerText,
 .inputBox {
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .form {
@@ -148,7 +161,7 @@ button {
 
 select{
   margin: auto;
-  margin-bottom: -10px;
+  margin-bottom: -20px;
 }
 
 .underline-hover {
