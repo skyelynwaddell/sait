@@ -1,28 +1,28 @@
-h1, h2 {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    font-style: normal;
-    color:rgb(255, 255, 255)
-  }
+h1,
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+}
 
-  h2 {
-    font-size: medium;
-  }
+h2 {
+  font-size: medium;
+}
 
-body{
+body {
   background-color: rgb(40, 40, 40);
 }
 
-a{
-  color:rgb(255, 255, 255);
+a {
+  color: rgb(255, 255, 255);
 }
 
-.img{
-  width:40rem;
+.img {
+  width: 40rem;
 }
 
-.navbar{
+.navbar {
   justify-content: center;
-  
 }

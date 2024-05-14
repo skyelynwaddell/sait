@@ -1,132 +1,187 @@
-.banner{
-    width:100%;
-    justify-content: center;
-    align-items: center;
+.banner {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-.logo{
-    width:200px;
+.logo {
+  width: 70px;
 }
 
-table{
-    width:100%;
-    border-collapse: separate;
-    border-spacing: 10px;
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 10px;
 }
 
-th,td{
-    padding: 8px;
-    text-align: left;
-    border-radius: 10px;
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-radius: 10px;
 }
 
-th{
-    background-color: rgba(255, 255, 255, 0.429);
+th {
+  background-color: rgba(255, 255, 255, 0.429);
 }
 
-.title{
-    padding-top:10px;
-    text-align: center;
+.bubble {
+    background-color: rgba(255, 255, 255, 0.271);
+  }
+
+.agentBubble{
+  margin: auto;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
-.container, .navbar{
-    min-width:100%;
-    justify-content: center;
-    text-align: center;
-    margin: auto;
-    padding:0;
-
+.agentName{
+  margin: auto;
+  font-size: x-large;
 }
 
-.inputTypes{
-    margin: auto;
-    padding-top: 20px;
+.feedback{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-.registerForms{
-    align-items: center;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    text-align: center;
+.feedbackInput{
+  width:400px;
+  height:100px;
 }
 
-.registerText, .inputBox{
-    margin-bottom: 10px;
+.title {
+  font-size: xx-large;
+  padding: 10px;
+  padding-top: 10px;
+  text-align: center;
 }
 
-.form{
-    align-items: center;
+.container,
+.navbar {
+  min-width: 100%;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  padding: 0;
 }
 
-button{
-    margin-top:10px;
+.inputTypes {
+  margin: auto;
+  padding-top: 20px;
+  text-align: center;
 }
 
-.navbar{
-    padding:10px;
-}
-.container{
-    background-color: rgba(255, 255, 255, 0.374);
-    border-color: black;
-    margin-top: 0;
-    flex-grow:1;
-    margin-bottom:0;
+.inputBoxes {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.inner-container{
-    width:100%;
-    margin: auto;
+.bi-envelope-fill,
+.bi-telephone-fill{
+  color: white;
+  margin: auto;
+  margin-bottom:10px;
+  margin-top: 8px;
 }
 
-.underline-hover{
-    text-decoration: none;
+.registerForms {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
 }
 
-.underline-hover:hover{
-    text-decoration: underline;
+.registerText,
+.inputBox {
+  margin-bottom: 10px;
 }
 
-body{
-    background-image: url('https://media.gettyimages.com/id/663261182/photo/northern-lights-in-mount-kirkjufell-iceland-with-a-man-passing-by.jpg?s=612x612&w=0&k=20&c=HnhkVPYRXShUWJEcZe3KEBNrOo51ImxPccjUg34MXt4=');
-    width:100%;
-    height:100%;
-    background-size:cover;
-    backdrop-filter: blur(10px);
+.form {
+  align-items: center;
 }
 
-footer{
-    color:white;
-    margin-top:auto;
-    text-align:center;
-    padding:15px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    position:sticky;
-    bottom:0;
-    left:0;
-    right:0;
-    top:100%;
+button {
+  margin-top: 10px;
 }
 
-h1, a, h2{
-    color: rgb(0, 0, 0); 
+.navbar {
+  padding: 10px;
+}
+.container {
+  background-color: rgba(0, 0, 0, 0.099);
+  border-color: black;
+  margin-top: 0;
+  flex-grow: 1;
+  margin-bottom: 0;
 }
 
-.navbar,footer{
-    background-color: rgb(46, 46, 46); 
+.inner-container {
+  width: 100%;
+  margin: auto;
 }
 
-.bubble{
-    background-color: rgba(0, 149, 255, 0.174);
+.underline-hover {
+  text-decoration: none;
 }
 
-body{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    flex-direction: column;
+.underline-hover:hover {
+  text-decoration: underline;
+}
+
+hr{
+    width:25rem;
+    margin:auto;
+    margin-bottom:10px;
+}
+
+body {
+  background-image: url("https://media.gettyimages.com/id/663261182/photo/northern-lights-in-mount-kirkjufell-iceland-with-a-man-passing-by.jpg?s=612x612&w=0&k=20&c=HnhkVPYRXShUWJEcZe3KEBNrOo51ImxPccjUg34MXt4=");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  backdrop-filter: blur(10px);
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  color: white;
+  margin-top: auto;
+  text-align: center;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+}
+
+h1,
+a,
+h2 {
+  color: rgb(0, 0, 0);
+}
+
+.navbar,
+footer {
+  background-color: rgb(46, 46, 46);
+}
+
+@media only screen and (min-width: 700px) {
+  .container {
+    min-width: 400px;
+    width: 600px;
+  }
 }
