@@ -74,6 +74,7 @@ fetch('./input-types.html')
                 > 
                 </input>
                 `;
+
         }
     })
     .catch(error => console.error('Error fetching input types:', error));
