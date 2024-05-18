@@ -1,0 +1,57 @@
+<html>
+<head><title>example</title>
+</head>
+
+<body bgcolor=#8080FF>
+   <input type="button" name="myButton" value="Click Here" onclick="alert('You \nClicked?');">
+   <input type="button" name="myButton2" value="Click for red" onclick="document.bgColor='red';">
+   <input type="button" name="myButton3" value="Click for green" onmouseover="document.bgColor='green';">
+   <input type="button" name="myButton4" value="Click for blue" onmouseout="document.bgColor='blue';">
+   
+   <form method="post" onsubmit="return validate(this);" name="myform" action="http://hpeters.org/oosd/bouncer.php">
+      <input type="text" name="field1" onfocus="alert('enter your name here');" onchange="displayValue(this.value);">
+      <input type="text" name="field2" onfocus="alert('enter your password here');" onchange="displayValue(document.myform.field2.value);">
+      <input type="text" name="field3">
+      <input type="submit" onclick="return confirm('do you really want to submit?');" value="Send the data">
+      <input type="reset" onclick="return confirm('do you really want to reset?');" value="reset the data">
+	  
+   </form>
+   <script type="text/JavaScript">
+      function displayValue(fieldVal)
+	  {
+	     //fieldValue = document.myform.field1.value;
+	     //fieldValue = document.forms[0].elements[0].value;
+	     //fieldValue = document.forms[0].elements[1].value;
+		 alert(fieldVal);
+		 //alert(document.myform.field1.value);
+	  }
+	  
+	  function validate(form)
+	  {
+	   /*  isValid = true;
+		 if (form.elements[0].value == "")
+		    isValid = false;
+		 if (document.forms[0].elements[1].value == "")
+		    isValid = false;
+		 if (document.forms[0].elements[2].value == "")
+		    isValid = false;
+		 if (isValid == false)
+		    alert("There is an empty field");
+		 return isValid;
+		 alert("returning to the form");
+		*/
+ 
+		 for (i=0; i<form.elements.length; i++)
+		 {
+		    if (form.elements[i].value == "")
+			{
+			   alert("There is an empty field");
+			   form.elements[i].focus();
+			   return false;
+			}
+		 }
+		 return true;
+	  }
+   </script>
+</body>
+</html>

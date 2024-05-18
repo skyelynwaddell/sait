@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Array Manipulation</title>
+	</head>
+	<body>
+		<h2> The Array Size is Extended by Adding Elements</h2>
+		<h3>Using length property to display the array size</h3>
+		<h3>length can be used in for-condition</h3>
+
+		<script type = "text/javascript">
+		// Declaration and Initialization 
+
+		var total = 0;
+		var hours = new Array(3);
+		
+		for (var i = 0; i<hours.length; i++)
+		{
+		hours[i] = parseInt(prompt("Please enter hours of employee # "+(i+1)));
+		}
+		for (var i = 0; i<5; i++)
+		{
+		document.write("hours of employee # " + (i+1) + " = " + hours[i] + "<br/>");
+		/*total = total + hours[i];*/
+		total += hours[i];
+		}
+		document.write("Total = " + total + "<br/>");
+		document.write("Array length = " + hours.length + "<br/>");
+		/*hours[3] = 50; 
+		hours[4] = 60; 
+		document.write("Array length = " + hours.length + "<br/>");*/
+
+		</script>
+	</body>
+</html>

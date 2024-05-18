@@ -1,0 +1,24 @@
+<html>
+<head><title>Some More Basic Interactivity</title>
+
+<script language="JavaScript">
+var first = window.prompt("Please enter Your Name:" , ""); // 2nd parameter is default value
+
+document.write(" Hello  <font face=arial color=red><b> " + first + " </b></font> and Welcome to my Webpage.<br>");
+
+document.write("<form method='post' action='mailto:me@aol.com'>");  // look at the action
+document.write("<input type='text' name='firstname' value='" + first + "')>");
+document.write("<input type='submit' value='Send Away'>");
+document.write("<input type='reset' value='Clear'>");
+document.write("</form>");
+
+</script>
+</head>
+
+<body>
+<center>
+<p>Please take a moment to complete this form.</p> 
+<p> For your convenience, your name has already been added to the form.</p>
+</center>
+
+</body></html>

@@ -1,0 +1,37 @@
+<html>
+<head><title>example</title>
+   <script type="text/JavaScript">
+     //this one works fine 
+	  function earlyHeadTagFunction()
+	  {
+		 alert("this function is loaded in the head tag before it is called");
+	  }
+      alert("I'm about to call the early head-tag function");
+      earlyHeadTagFunction();
+
+   </script>
+   <script type="text/JavaScript">
+      alert("I'm about to call the late head-tag function");
+      lateHeadTagFunction();
+      function lateHeadTagFunction()
+	  {
+		 alert("this function is loaded before it is called");
+	  }
+
+   </script>
+</head>
+
+<body bgcolor=#8080FF>
+   <script type="text/JavaScript">
+      alert("I'm about to call the late body function");
+      lateBodyFunction();
+   </script>
+   <script type="text/JavaScript">
+      function lateBodyFunction()
+	  {
+		 alert("this function is loaded in the body tag\nand called before it is loaded");
+	  }
+	  
+   </script>
+</body>
+</html>

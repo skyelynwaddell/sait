@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Array Manipulation</title>
+	</head>
+	<body>
+		<h2> The Array Size is Extended by Adding Elements</h2>
+		<h3>Using length property to display the array size</h3>
+		<h3>length can be used in for-condition</h3>
+
+		<script type = "text/javascript">
+		// Declaration and Initialization 
+
+		var numbers = new Array(3);
+		numbers[0] = -3; 
+		numbers[1] = 0;
+		numbers[2] = 8;
+		document.write("The original array has: " + numbers.length + " elements.<br/>"); 
+
+		numbers[3] = 15;
+		numbers[4] = 21;
+		document.write("The array has: " + numbers.length + " elements after addition.<br/>"); 
+
+		// Processing Array Elements Using For
+		for (i = 0; i < numbers.length; i++)
+		document.write("Array element " + (i+1) + " = " + numbers[i] + "<br/>");
+
+		</script>
+	</body>
+</html>

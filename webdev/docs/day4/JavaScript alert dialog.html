@@ -1,0 +1,28 @@
+<html>
+<head><title>Alert Example</title>
+
+<script language="JavaScript">
+
+//alert("Are you sure you want to continue?");
+//document.write("<center><font size=+2 face=arial>Thank you for persisting!</font><center>");
+
+function welcome()
+{
+  alert('Welcome to\n our page!');
+}
+
+function goodbye()
+{
+  alert('Goodbye!');
+}
+
+</script>
+</head>
+
+<body onLoad='welcome();' onUnload='goodbye();' bgcolor=yellow>
+
+<h1>Did this wait until after the alert box was closed?</h1>
+<script>
+goodbye()
+</script>
+</body></html>

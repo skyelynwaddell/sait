@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Length Property</title>
+	</head>
+	<body>
+ 		<h2> The Array Size is Extended by Adding Elements</h2>
+
+		<script type = "text/javascript">
+		// Declaration and Initialization 
+
+		var food = ["pizza", "hamburger"];
+		
+		document.write("The original array has: " + food.length + " elements.<br/>"); 
+
+		food[2] = "cake";
+		food[3] = "fries";
+		document.write("The array has: " + food.length + " elements after addition.<br/>"); 
+
+		// Processing Array Elements Using For
+		for (i = 0; i < food.length; i++)
+		document.write("Array element " + (i+1) + " = " + food[i] + "<br/>");
+
+		</script>
+	</body>
+</html>

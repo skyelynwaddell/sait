@@ -12,7 +12,7 @@
 ## Games & Applications
   
   <a href="https://skyestuff.itch.io/undead-survivor" target="_blank"><img src="https://lh3.googleusercontent.com/zto_sEx7-zSg4hwC6b5kwl5x6zt2z7UKCSmecq2EpfoDCxYTJNsJPMS83xtAuiZADSw" alt="Undead Survivor" height="100" />
-<br>Undead Survivor<br>
+<br>Undead Survivor<br></a>
 </div>
   <div align="center">
 
@@ -23,7 +23,7 @@
     <td align="center">
       <div align="center">
         <a href="https://adobe.com/" target="_blank"><img style="margin: 10px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/480px-Adobe_Creative_Cloud_rainbow_icon.svg.png?20221002235840" alt="Adobe Creative Suite" height="50" /></a>
-        <a href="https://adobe.com/" target="_blank"><img style="margin: 10px;" src="https://styles.redditmedia.com/t5_2su6s/styles/communityIcon_4g1uo0kd87c61.png" alt="React JS" height="50" /></a>
+        <a href="https://react.dev/" target="_blank"><img style="margin: 10px;" src="https://styles.redditmedia.com/t5_2su6s/styles/communityIcon_4g1uo0kd87c61.png" alt="React JS" height="50" /></a>
         <a href="https://www.aseprite.org" target="_blank"><img style="margin: 10px;" src="https://user-images.githubusercontent.com/105599773/227793892-34a4144b-6161-469e-adf2-2e5b00c466cf.png" alt="Aseprite" height="50" /></a>
         <a href="https://www.image-line.com" target="_blank"><img style="margin: 10px;" src="https://www.pngfind.com/pngs/m/4-49885_fl-studio-logo-png-transparent-png.png" alt="FL Studio" height="50" /></a>
         <a href="https://developer.android.com/" target="_blank"><img style="margin: 10px;" src="https://1.bp.blogspot.com/-LgTa-xDiknI/X4EflN56boI/AAAAAAAAPuk/24YyKnqiGkwRS9-_9suPKkfsAwO4wHYEgCLcBGAsYHQ/s0/image9.png" alt="Android Studio" height="50" /></a>
@@ -54,7 +54,11 @@
 </table>
 </div>
 <div align="center">
+</a>
 
+## Certificates
+<h3>💻<a href="https://freecodecamp.org/certification/fcc1e1b3e48-8bf3-4182-aa35-f1289dd6feb6/responsive-web-design" style="color:grey;">SAIT - Object Oriented Software Development <br> (in progress...)</h3></a>
+<h3>🌐<a href="https://freecodecamp.org/certification/fcc1e1b3e48-8bf3-4182-aa35-f1289dd6feb6/responsive-web-design">FCC - Responsive Web Design</h3></a>
 
 ## GitHub Stats
 
@@ -68,17 +72,6 @@
 <img src=https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
 </a>
   
-<a href="https://twitter.com/ver2ion" target="_blank">
-<img src=https://img.shields.io/badge/twitter-%2300acee.svg?&style=for-the-badge&logo=twitter&logoColor=white alt=twitter style="margin-bottom: 5px;" />
-</a>
-  
-<a href="https://www.facebook.com/ver2ion" target="_blank">
-<img src=https://img.shields.io/badge/facebook-%232E87FB.svg?&style=for-the-badge&logo=facebook&logoColor=white alt=facebook style="margin-bottom: 5px;" />
-</a>  
-  
-<a href="http://www.skyescloud.xyz" target="_blank">
-<img src = "https://img.shields.io/badge/skyescloud.xyz-%20-blue">
-</a>  
 
 </div>  
 <br/>
@@ -94,10 +87,6 @@
 </div>   
 
 <br>
-
-<div>
-<img style="width:300px;" class="cert" src="./freecodecamp/responsive-webdev-cert.png">
-</div>
 
 ------
  <br>

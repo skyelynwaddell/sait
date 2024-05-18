@@ -1,3 +1,7 @@
+/* Created by Skye Waddell
+May 2024 | OOSD - Web Development | Travel Project 
+CRPG-210-A */
+
 .banner {
   width: 100%;
   justify-content: center;
@@ -8,11 +12,11 @@
   width: 70px;
 }
 
-.robotCheck{
+.robotCheck {
   margin: auto;
   display: flex;
   justify-content: center;
-  padding-right:10px;
+  padding-right: 10px;
 }
 
 table {
@@ -21,41 +25,42 @@ table {
   border-spacing: 10px;
 }
 
-
-th,
-td {
-  padding: 8px;
-  text-align: left;
-  border-radius: 10px;
- 
+.button {
+  margin-top: 10px;
+  width: 5em;
 }
 
-th {
-  background-color: rgba(255, 255, 255, 0.429);
+.termsText {
+  padding-left: 5px;
 }
 
-.agentBubble{
+.agentBubble {
   margin: auto;
   width: 100%;
   display: inline-block;
   margin-bottom: 10px;
 }
 
-.agentName{
+.agentName {
   margin: auto;
   font-size: x-large;
 }
 
-.feedback{
+.meter-buttons {
+  margin-top: -20px;
+}
+
+.feedback {
   margin: auto;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
 }
 
-.feedbackInput{
-  width:80%;
-  height:100px;
+.feedbackInput {
+  width: 80%;
+  height: 100px;
+  margin-top: 15px;
 }
 
 .title {
@@ -85,12 +90,12 @@ th {
 }
 
 .bi-envelope-fill,
-.bi-telephone-fill{
-  color: white;
+.bi-telephone-fill {
+  color: rgb(60, 60, 60);
   margin: auto;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   margin-top: 8px;
-  margin-right:5px;
+  margin-right: 5px;
 }
 
 .registerForms {
@@ -102,15 +107,15 @@ th {
   text-align: center;
 }
 
-
-.registerLabel{
+.registerLabel {
   display: inline-block;
   width: 100px;
   text-align: left;
 }
 
-.inputBox,select{
-  width:150px;
+.inputBox,
+select {
+  width: 150px;
 }
 
 .registerText,
@@ -124,6 +129,17 @@ th {
 
 button {
   margin-top: 10px;
+}
+
+pre {
+  background-color: rgba(0, 0, 0, 0.762);
+  width: 20em;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(34, 188, 34);
 }
 
 .navbar {
@@ -143,14 +159,14 @@ button {
 }
 
 .bubble {
-  background-color: rgba(255, 255, 255, 0.271);
+  background-color: rgba(255, 255, 255, 0.582);
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .bubble2 {
-  background-color: rgba(255, 255, 255, 0.271);
+  background-color: rgba(255, 255, 255, 0.916);
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
@@ -160,7 +176,98 @@ button {
   text-align: center;
 }
 
-select{
+.outter-container {
+  background-color: rgba(255, 255, 255, 0.555);
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.imageArrayPictures {
+  width: 100%;
+}
+
+.bubble3 {
+  background-color: rgba(255, 255, 255, 0.582);
+  border-radius: 10px;
+  height: 6.7em;
+  padding: 2px;
+  width: 100%;
+  height: 7em;
+  transition-duration: 0.5s;
+}
+
+.outter-bubble {
+  background-color: rgba(255, 255, 255, 0.582);
+  border-radius: 10px;
+  padding: 2px;
+  width: 100%;
+  transition-duration: 0.5s;
+}
+
+.imageArrayHeader {
+  margin-top: 10px;
+}
+
+.imageArrayTable {
+  margin: 0;
+  margin-top: -20px;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageArrayPictures {
+  border-radius: 10px;
+  width: 10em;
+  height: 7em;
+  display: block;
+  margin: auto;
+  transition-duration: 0.5s;
+}
+
+.imageArrayPictures:hover,
+.bubble3:hover {
+  transform: scale(1.05);
+}
+
+.imageArrayPictures:hover {
+  cursor: pointer;
+}
+
+.imageArrayTable th,
+.imageArrayTable td {
+  background-color: rgba(255, 255, 255, 0.384);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.imageArrayTable td.text {
+  width: 80%;
+}
+
+.image-text-title {
+  padding: 10px;
+  font-size: large;
+  margin-bottom: -15px;
+  text-align: left;
+  text-decoration: underline;
+  color: rgb(0, 0, 137);
+}
+
+.image-text-title:hover {
+  cursor: pointer;
+  color: rgb(37, 51, 175);
+}
+
+.image-text-description {
+  font-size: small;
+  text-align: left;
+  padding: 10px;
+}
+
+select {
   margin: auto;
   margin-bottom: -20px;
 }
@@ -173,10 +280,17 @@ select{
   text-decoration: underline;
 }
 
-hr{
-    width:60%;
-    margin:auto;
-    margin-bottom:10px;
+#canvasBallWindow {
+  background-color: grey;
+  width: 96%;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+
+hr {
+  width: 60%;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 body {
@@ -218,6 +332,14 @@ footer {
   background-color: rgb(46, 46, 46);
 }
 
+.strongPassword {
+  font-size: medium;
+  color: rgb(54, 54, 54);
+  background-color: rgba(128, 128, 128, 0.527);
+  padding: 10px;
+  border-radius: 5px;
+}
+
 @media only screen and (min-width: 767px) {
   .container {
     width: 767px;
@@ -225,8 +347,15 @@ footer {
 }
 
 @media only screen and (max-width: 767px) {
-  .inner-container,.container,.bubble {
+  .item-container {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .item-container,
+  .inner-container,
+  .container,
+  .bubble {
     width: 100%;
   }
 }
-

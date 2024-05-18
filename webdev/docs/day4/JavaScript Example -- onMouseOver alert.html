@@ -1,0 +1,40 @@
+<html>
+<head><title>Basic If /Else Statement</title></head>
+
+<script language="Javascript">
+sButton = "";
+function elseover() {
+if (sButton == "A") {
+
+alert("Your mouse is currently over button  \'A\'")
+
+}
+
+else {
+
+alert("Your mouse is currently over button \'B\'")
+
+}
+}
+</script>
+</head>
+
+<body>
+
+
+<form>
+<table width=100%>
+<tr>
+<td>
+<input type="button" value="Button A " onmouseover="sButton = 'A';elseover()">
+</td>
+
+<td align=right>
+<input type="button" value="Button B " onmouseover="sButton = 'B';elseover()">
+</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>

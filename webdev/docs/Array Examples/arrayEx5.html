@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Array Manipulation</title>
+	</head>
+	<body>
+		<h2> Interactively Loading Array</h2>
+
+		<script type = "text/javascript">
+		// Declaration
+		var grades = new Array();
+		var sum = 0;
+		var numOfGrades = parseInt(prompt("How many grades You woul like to enter: "));
+		
+		// Getting Grades From User
+		for (i = 0; i < numOfGrades; i++)
+		{ 
+			grades[i] = parseFloat(prompt("Enter the grade #: " + (i+1) + ":"));
+			sum = sum + grades[i];
+		}
+		// Displaying Entered Grades and total
+		document.write("The Entered Grades are: ");
+		for (i = 0; i < grades.length; i++)
+		{ 
+			document.write("<br/>" + grades[i]);
+		}
+		document.write("<br/> Total is: " + sum);
+		</script>
+	</body>
+</html>

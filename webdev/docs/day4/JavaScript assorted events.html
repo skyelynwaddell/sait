@@ -1,0 +1,22 @@
+<html>
+<head><title>example</title>
+   <script type="text/JavaScript" src="scripts.js">
+   </script>
+</head>
+
+<body bgcolor=#8080FF>
+   <input type="button" name="myButton" value="Click Here" onclick="alert('You \nClicked?');">
+   <input type="button" name="myButton2" value="Click for red" onclick="document.bgColor='red';">
+   <input type="button" name="myButton3" value="Click for green" onmouseover="document.bgColor='green';">
+   <input type="button" name="myButton4" value="Click for blue" onmouseout="document.bgColor='blue';">
+   
+   <form method="post" onsubmit="return validate(this);" name="myform" action="http://hpeters.org/oosd/bouncer.php">
+      <input type="text" name="field1" onfocus="alert('enter your name here');" onchange="displayValue(this.value);">
+      <input type="text" name="field2" onfocus="alert('enter your password here');" onchange="displayValue(document.myform.field2.value);">
+      <input type="text" name="field3">
+      <input type="submit" onclick="return confirm('do you really want to submit?');" value="Send the data">
+      <input type="reset" onclick="return confirm('do you really want to reset?');" value="reset the data">
+	  
+   </form>
+</body>
+</html>

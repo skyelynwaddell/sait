@@ -1,0 +1,30 @@
+<html>
+
+<head><title>Breaking out of a Loop </title>
+
+<script language="Javascript">
+
+function loopbreak() 
+{
+   var  bResult;
+   for (i = 1; i < 1000; i++)  // What is the value of i that breaks the loop?
+   {
+      bResult = confirm("i = " +  i  + "\nCancel to \'break\' or OK to Continue","")
+      if (bResult == false) 
+	  {
+         i=1000;
+      }
+   }
+   alert("The loop ended at\ni = " + i)
+} 
+</script>
+</head>
+
+<body>
+
+   <form>
+      <input type="button" value="Start the Loop, please" onclick="loopbreak()">
+   </form>
+
+</body>
+</html>

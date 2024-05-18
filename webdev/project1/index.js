@@ -1,16 +1,31 @@
+// Created by Skye Waddell
+// May 2024 | OOSD - Web Development | Travel Project
+// CRPG-210-A
+const weakText = "Password Strength: WEAK ⛔";
+let shortText  = "Password Strength: SHORT ✅";
+let strongText = "Password Strength: STRONG ✅";
+
+const imageArray = [
+    { name : "https://media.gettyimages.com/id/182175143/photo/photo-of-some-white-whispy-clouds-and-blue-sky-cloudscape.jpg?s=612x612&w=0&k=20&c=4pM1uET260cVlZooulBBBjST9Cx-uzKwBNNYyn3AN_k=",                                  title: "Image #1", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "https://google.com/" },
+    { name : "https://media.gettyimages.com/id/1297349747/photo/hot-air-balloons-flying-over-the-botan-canyon-in-turkey.jpg?s=612x612&w=0&k=20&c=kt8-RRzCDunpxgKFMBBjZ6jSteetNhhSxHZFvHQ0hNU=",                                   title: "Image #2", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "http://amazon.com/" },
+    { name : "https://media.gettyimages.com/id/1413299539/photo/male-tourist-looking-at-arrival-and-departure-board-at-kuala-lumpur-international-airport.jpg?s=612x612&w=0&k=20&c=2XC49sUve2fV4hDBzVQjZfM4OudujBX5jVUja65QngM=", title: "Image #3", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "http://ibm.com/" },
+    { name : "https://media.gettyimages.com/id/1180055107/photo/woman-in-a-gondola.jpg?s=612x612&w=0&k=20&c=4hRqNRkoKZN1LtNHg30VbSY50pqCO3o9JTzrikqtbfw=",                                                                        title: "Image #4", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "http://apple.com/" },
+    { name : "https://media.gettyimages.com/id/1094338162/photo/summers-a-time-for-adventure.jpg?s=612x612&w=0&k=20&c=WBA3fgSawaK60gnorXxSvReblySZ4m2ej7U9H5AP8Kc=",                                                              title: "Image #5", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "http://bing.com/" },
+]
+
 fetch('./contact.html')
     .then(response => response.text())
     .then(() => {
         const agents = [
-            { name : "John Doh",    email: "john.doh@email.com",    phone: "(123) 123-1234" },
-            { name : "Alex Joe",    email: "alex.joe@email.com",    phone: "(123) 123-1234" },
-            { name : "Mc Apple",    email: "mc.apple@email.com",    phone: "(123) 123-1234" },
-            { name : "Hello World", email: "hello.world@email.com", phone: "(123) 123-1234" },
-            { name : "Jenny Lenny", email: "jenny.lenny@email.com", phone: "(123) 123-1234" },
-            { name : "Adam Color",  email: "adam.color@email.com",  phone: "(123) 123-1234" },
+            { name: "John Doh",    email: "john.doh@email.com",    phone: "(123) 123-1234" },
+            { name: "Alex Joe",    email: "alex.joe@email.com",    phone: "(123) 123-1234" },
+            { name: "Mc Apple",    email: "mc.apple@email.com",    phone: "(123) 123-1234" },
+            { name: "Hello World", email: "hello.world@email.com", phone: "(123) 123-1234" },
+            { name: "Jenny Lenny", email: "jenny.lenny@email.com", phone: "(123) 123-1234" },
+            { name: "Adam Color",  email: "adam.color@email.com",  phone: "(123) 123-1234" },
         ]
 
-        for (let i in agents){
+        for (let i in agents) {
             document.getElementById('agents').innerHTML +=
             `
             <div class="agents">
@@ -62,7 +77,7 @@ fetch('./input-types.html')
         ]
 
         for (let i in inputTypes) {
-            var type = inputTypes[i].type;
+            let type = inputTypes[i].type;
             document.getElementById('inputTypes').innerHTML +=
                 `
                 <label for="${type}">${type}</label>
@@ -74,7 +89,6 @@ fetch('./input-types.html')
                 > 
                 </input>
                 `;
-
         }
     })
     .catch(error => console.error('Error fetching input types:', error));
@@ -102,3 +116,202 @@ fetch('./utils/footer.html')
         document.getElementById('footer').innerHTML = html;
     })
     .catch(error => console.error('Error fetching footer:', error));
+
+//sign up button onclick func on register page
+function registerButton() {
+    let response = confirm("Are you sure you want to sign up?");
+    let pass1 = document.getElementById("registerPassword1").value;
+    let pass2 = document.getElementById("registerPassword2").value;
+
+    if (response) {
+        if (pass1 !== pass2) {
+            alert("Passwords do not match.");
+            return false;
+        }
+
+        alert("Sign up success.");
+        return true;
+    }
+}
+
+//reset button onlick func on register page
+function resetButton() {
+    let text  = weakText;
+
+    document.getElementById("passwordMatch").innerHTML = "Password must not be empty."
+    document.getElementById("strongPassword").innerHTML = text;
+    return confirm("Are you sure you want to clear all fields?");
+}
+
+//clamp value to min/max value
+function clamp(value, min, max) {
+    if (value > max) {
+        value = max;
+    }
+    if (value < min) {
+        value = min;
+    }
+    return value;
+}
+
+//function that controls the meter amount on the inputs page
+function increasePercent(increase, percentIncrease) {
+    if (increase === true)  percent += percentIncrease;
+    if (increase === false) percent -= percentIncrease;
+
+    percent = clamp(percent, 0, 1);
+
+    let roundedPercent = Math.round(percent * 100);
+    let meter = document.getElementById("meter");
+
+    meter.value = percent;
+    document.getElementById('meter-text').innerHTML =
+        `${roundedPercent}%`;
+}
+
+//load image array on home page (day 5 excercise)
+fetch('./')
+    .then(response => response.text())
+    .then(() => {
+    for (let i in imageArray){
+        let table = document.getElementById('imageArrayTable');
+        let row   = document.createElement('tr');
+        let img   = document.createElement('td');
+
+        img.innerHTML = `<img class="imageArrayPictures" src="${imageArray[i].name}" onclick="openAndCloseWindow('${imageArray[i].url}');">`;
+        row.appendChild(img);
+ 
+        let text = document.createElement('td');
+        text.innerHTML =
+        `
+        <div class="bubble3">
+            <a onclick="openAndCloseWindow('${imageArray[i].url}');"><h3 class="image-text-title">${imageArray[i].title}</h3></a>
+            <h4 class="image-text-description">${imageArray[i].description}</h4>
+        </div>
+        `;
+        row.appendChild(text);
+        table.appendChild(row);
+    }
+
+    bonusBlock();
+
+}).catch(error => console.error('Error fetching image array:', error));
+
+function displayPicture(txt){
+    for (let i in imageArray){
+        if (imageArray[i].title === txt){
+
+            let index = imageArray[i];
+            let message = `${index.name} ${index.title} ${index.description}`;
+
+            console.log(message);
+            alert(message);
+        }
+    }
+}
+
+function checkPasswordStrength(){
+    let field = document.getElementById("registerPassword1");
+    let passwordStrength = document.getElementById("strongPassword");
+    
+    let text  = weakText;
+
+    if (field.value.length <= 4){
+        text = weakText;
+    }
+    else if (field.value.length <= 10){
+        text = shortText;
+    }
+    else {
+        text = strongText;
+    }
+
+    passwordStrength.innerHTML = text;
+}
+
+function matchPassword(){
+    let pass1 = document.getElementById("registerPassword1").value;
+    let pass2 = document.getElementById("registerPassword2").value;
+
+    if (pass1 !== pass2){
+        document.getElementById("passwordMatch").innerHTML = "Passwords DON'T match! ⛔";
+    }
+    else if (pass1.length <= 0){
+            document.getElementById("passwordMatch").innerHTML = "Password must not be empty.";
+    } else {
+        document.getElementById("passwordMatch").innerHTML = "Passwords match! ✅";
+    }
+}
+
+function openAndCloseWindow(_url){
+    let newWindow = window.open('', '', 'width=640, height=480');
+    let newWindowDocument = newWindow.document;
+
+    //create new window which will then redirect to the image's urlS
+    newWindow.onload = function(){
+        redirectWindow(newWindowDocument, _url);
+    }
+
+    //close window automatically after a duration of time
+    setTimeout(() => {
+        newWindow.close();
+        window.open(_url, '', 'width=640, height=480');
+    }, 2000)
+}
+
+//redirect window function
+function redirectWindow(newWindowDocument, _url){
+        let paragraph = newWindowDocument.createElement("p");
+        let anchor = newWindowDocument.createElement("a");
+        let textNode  = newWindowDocument.createTextNode("This page will soon close. If not redirected automatically, ");
+
+        anchor.href = _url;
+        anchor.textContent = "click here"
+
+        paragraph.appendChild(textNode);
+        paragraph.appendChild(anchor);
+        newWindowDocument.body.appendChild(paragraph);
+}
+
+//bonus script of bouncing ball for excercise wed may 22 2024
+document.addEventListener('DOMContentLoaded', () => {
+    let canvas = document.getElementById('canvasBallWindow');
+    let ctx    = canvas.getContext('2d');
+    let w      = canvas.width;
+    let h      = canvas.height;
+
+    let x = w / 2;
+    let y = h / 2;
+
+    let dirx = +2;
+    let diry = -2;
+
+    function drawBall(){
+        ctx.clearRect(0,0,w,h);
+        ctx.beginPath();
+        ctx.arc(x,y,20,0,Math.PI * 2);
+        ctx.fillStyle = "lime";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function updateBallPosition(){
+        x+=dirx;
+        y+=diry;
+        let gap = 20
+
+        if (x + dirx > w - gap || x + dirx < gap){
+            dirx = -dirx;
+        }
+        if (y + diry > h - gap || y + diry < gap){
+            diry = -diry;
+        }
+    }
+
+    function updateBall(){
+        updateBallPosition();
+        drawBall();
+        requestAnimationFrame(updateBall);
+    }
+    updateBall();
+})

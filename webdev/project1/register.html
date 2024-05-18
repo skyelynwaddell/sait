@@ -1,133 +1,200 @@
 <!-- Created by Skye Waddell -->
+<!-- May 2024 | OOSD - Web Development | Travel Project -->
+<!-- CRPG-210-A -->
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
 
-    <!-- CSS -->
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous" />
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="index.css" />
+      crossorigin="anonymous">
+    </script>
+    
   </head>
+
   <body>
+
+    <!-- Blurry Background div -->
+    <div class="blurry-background"></div>
+
+    <!-- Container that holds all the website contents -->
     <div class="container">
+      
       <!-- Navbar -->
       <div id="navbarContainer"></div>
 
       <!-- Banner -->
       <div id="banner"></div>
 
-      <table>
-        <tr>
-          <th>
-            <div class="inner-container">
-              <h1 class="title">Register</h1>
-              <hr />
+      <!-- Main Container -->
+      <fieldset class="outter-container">
+        <table>
+          <tr>
+            <th>
+              <div class="inner-container">
+                <h1 class="title">Register</h1>
+                <hr />
 
-             
+                <div class="outter-bubble">
+                  <table>
+                    <tr>
+                      <th class="bubble">
 
-              <table>
-          
-                <tr>
-                  <th class="bubble">
-                    <div class="registerForms">
+                        <!-- Form Submission -->
+                        <form onsubmit="return registerButton()">
+                          <div class="registerForms">
 
-                      <div class="registerBlock">
-                      <p class="registerLabel">Email: </p>
-                      <input
-                        class="inputBox"
-                        placeholder="Email"
-                        type="email"
-                        name="Email"
-                        id="registerEmail"
-                      />
-                      </div>
+                            <!-- Email -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Email: </p>
+                              <input required class="inputBox"
+                                placeholder="Email" type="email" name="Email"
+                                id="registerEmail" />
+                            </div>
 
-                      <div class="registerBlock">
-                        <p class="registerLabel">Username: </p>
-                      <input
-                        class="inputBox"
-                        placeholder="Username"
-                        type="name"
-                        name="Username"
-                        id="registerUsername"
-                      />
-                      </div>
+                            <!-- Username -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Username: </p>
+                              <input required class="inputBox"
+                                placeholder="Username" type="name"
+                                name="Username"
+                                id="registerUsername" />
+                            </div>
 
-                      <div class="registerBlock">
-                        <p class="registerLabel">Password: </p>
-                      <input
-                        class="inputBox"
-                        placeholder="Password"
-                        type="password"
-                        name="password"
-                        id="registerPassword1"
-                      />
-                      </div>
+                            <!-- Password -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Password: </p>
+                              <input required class="inputBox"
+                                oninput="checkPasswordStrength(); matchPassword();"
+                                placeholder="Password" type="password"
+                                name="password"
+                                id="registerPassword1" />
+                            </div>
 
-                      <div class="registerBlock">
-                        <p class="registerLabel">Confirm Password: </p>
-                      <input
-                        class="inputBox"
-                        placeholder="Confirm Password"
-                        type="password"
-                        name="password"
-                        id="registerPassword2"
-                      />
-                      </div>
+                            <!-- Confirm Password -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Confirm Password: </p>
+                              <input required class="inputBox"
+                                oninput=" matchPassword();"
+                                placeholder="Confirm Password" type="password"
+                                name="password"
+                                id="registerPassword2" />
+                            </div>
 
-                      <div class="registerBlock">
-                        <p class="registerLabel">Country: </p>
-                      <select>
-                        <option value="country1">Canada</option>
-                        <option value="country2">USA</option>
-                      </select>
-                      <br>
-                      </div>
+                            <!-- Country -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Country: </p>
+                              <select>
+                                <option value="country1">Canada</option>
+                                <option value="country2">USA</option>
+                              </select>
+                              <br>
+                            </div>
 
-                      <div class="registerBlock">
-                        <p class="registerLabel">City: </p>
-                      <input
-                        class="inputBox"
-                        placeholder="City"
-                        type="city"
-                        name="city"
-                        id="registerCity"
-                      />
-                      </div>
+                            <!-- Province/State -->
+                            <div class="registerBlock">
+                              <p class="registerLabel provinceText">Province</p>
+                              <input required class="inputBox"
+                                placeholder="Province" type="state" name="state"
+                                id="registerProvince" />
+                            </div>
 
-                      <div class="bubble2">
-                        <div class="robotCheck">
-                          <p class="robotCheck">I agree to the terms and conditions</p>
-                          <input type="checkbox" id="robotCheck" />
+                            <!-- City -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">City: </p>
+                              <input required class="inputBox"
+                                placeholder="City" type="city" name="city"
+                                id="registerCity" />
+                            </div>
+
+                            <!-- Postal/Zip Code -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Postal Code: </p>
+                              <input required class="inputBox"
+                                placeholder="Postal Code" type="text"
+                                name="postalCode"
+                                id="postalCode" />
+                            </div>
+
+                            <!-- Travel Card -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Travel Card: </p>
+                              <input required class="inputBox"
+                                placeholder="Travel Card No." type="number"
+                                name="number"
+                                id="travelCardNumber" min=1 max=999999999 />
+                            </div>
+
+                            <!-- Password Strength -->
+                            <div class="passStrength">
+                              <h2 id="strongPassword"
+                                class="strongPassword">Password Strength: WEAK
+                                ⛔</h2>
+                            </div>
+
+                            <!-- Do Passwords Match -->
+                            <div class="passwordMatch">
+                              <h2 id="passwordMatch"
+                                class="strongPassword">Password must not be
+                                empty.</h2>
+                            </div>
+
+                            <!-- Robot Check / Agree to terms -->
+                            <div class="bubble2">
+                              <div class="robotCheck">
+                                <p class="robotCheck">I agree to the <a
+                                    class="termsText"
+                                    href="./terms-conditions.html">terms
+                                    and conditions</a></p>
+                                <input type="checkbox" id="robotCheck"
+                                  required />
+                              </div>
+                            </div>
+
+                            <div>
+
+                              <!-- Reset Form Button -->
+                              <button type="reset"
+                                onclick="return resetButton()"
+                                class="btn btn-primary button">Reset</button>
+
+                              <!-- Sign Up Button -->
+                              <input value="Sign Up" type="submit"
+                                class="btn btn-primary button">
+                            </div>
+                          </form>
                         </div>
-                      </div>
+                      </th>
+                    </tr>
+                  </table>
+                </div>
+              </th>
+            </tr>
+          </table>
+        </fieldset>
 
-                      <button class="btn btn-primary">Sign Up</button>
-                    </div>
-                  </th>
-                </tr>
-              </table>
-            </div>
-          </th>
-        </tr>
-      </table>
-
+      <!-- Footer -->
       <footer id="footer"></footer>
-    </div>
+      </div>
 
-    <!-- Javascript -->
-    <script src="index.js"></script>
-  </body>
-</html>
+      <!-- Javascript -->
+      <script src="index.js"></script>
+    </body>
+
+  </html>

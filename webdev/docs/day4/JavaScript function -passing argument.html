@@ -1,0 +1,26 @@
+<html>
+<head> <title>Reveal Password </title>
+
+<script language="JavaScript">
+
+function testResults (form) {
+	var TestVar = form.inputbox.value;	
+alert ("You typed: " + TestVar);
+
+}
+
+</script>
+</head>
+<body bgcolor=aqua>
+
+<form name="myform" action="mailto:me@aol.com" method="post">
+
+Enter Password:<BR>
+
+<input type="password" name="inputbox" value="">
+<input type="button" name="button" Value="Click here to verify input" 
+onClick="testResults(this.form)">
+
+</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head><title>Basic If Statement</title></head>
+
+<script language="Javascript">
+
+var sButton;
+
+function basicif()
+{
+   if (sButton == "A")
+   {
+      alert("You have pressed button \'A\'")
+   }
+   else
+   {
+      alert("You have pressed button \'B\'")
+   }
+
+
+}
+
+</script>
+</head>
+
+<body>
+
+<form>
+<input type="button" value="Button A " onclick="sButton = 'A';basicif()">
+
+<input type="button" value="Button B " onclick="sButton = 'B';basicif()">
+
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Array Manipulation</title>
+	</head>
+	<body>
+		<h2> Interactively Loading Array</h2>
+
+		<script type = "text/javascript">
+		// Declaration
+		var studNames = new Array();
+
+		var numStud = parseInt(prompt("How many students are in the class: "));
+		
+		// Getting Names From User
+		for (i = 0; i < numStud; i++)
+		{ 
+			studNames[i] = prompt("Enter the name of student " + (i+1) + ":");
+		}
+		alert(i);
+		// Displaying Students Names
+		for (i = 0; i < studNames.length; i++)
+		{ 
+			document.write("<br/>Name of student " + (i+1) +": " + studNames[i]);
+		}
+		</script>
+	</body>
+</html>

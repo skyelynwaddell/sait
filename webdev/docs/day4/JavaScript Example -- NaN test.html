@@ -1,0 +1,46 @@
+<html>
+<head><title>NaN Example</title>
+
+<script language=JavaScript>
+var zxcv = 42;
+var qwerty;
+asdf = "Forty Two";
+document.write(zxcv + "/" + qwerty + "/" + asdf);
+</script>
+
+
+<script language="JavaScript">
+
+var xyz='xyz';
+x=isNaN(xyz); // Is z not a number (illegal number)
+document.write('xyz= "' + xyz + '"    isNAN=' + x + '<br>');
+
+var xyz='xyz123';
+x=isNaN(xyz);
+document.write('xyz= "' + xyz + '"    isNAN=' + x + '<br>');
+
+var xyz=123;
+x=isNaN(xyz);
+document.write('xyz= ' + xyz + '    isNAN=' + x + '<br>');
+
+var xyz='123xyz';
+x=isNaN(xyz);
+document.write('xyz= ' + xyz + '    isNAN=' + x + '<br>');
+
+var xyz='123xyz';
+xyz= +xyz;
+x=isNaN(xyz);
+document.write('xyz= ' + xyz + '    isNAN=' + x + '<br>');
+
+var xyz=null;
+x=isNaN(xyz);
+document.write('xyz= ' + xyz + '    isNAN=' + x + '<br>');
+
+</script>
+</head>
+
+<body>
+
+
+
+</body></html>
