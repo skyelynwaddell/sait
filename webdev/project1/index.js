@@ -1,9 +1,9 @@
 // Created by Skye Waddell
 // May 2024 | OOSD - Web Development | Travel Project
 // CRPG-210-A
-const weakText = "Password Strength: WEAK ⛔";
-let shortText  = "Password Strength: SHORT ✅";
-let strongText = "Password Strength: STRONG ✅";
+const weakText   = "Password Strength: WEAK ⛔";
+const shortText  = "Password Strength: SHORT ✅";
+const strongText = "Password Strength: STRONG ✅";
 
 const imageArray = [
     { name : "https://media.gettyimages.com/id/182175143/photo/photo-of-some-white-whispy-clouds-and-blue-sky-cloudscape.jpg?s=612x612&w=0&k=20&c=4pM1uET260cVlZooulBBBjST9Cx-uzKwBNNYyn3AN_k=",                                  title: "Image #1", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "https://google.com/" },
@@ -14,108 +14,188 @@ const imageArray = [
 ]
 
 fetch('./contact.html')
-    .then(response => response.text())
-    .then(() => {
-        const agents = [
-            { name: "John Doh",    email: "john.doh@email.com",    phone: "(123) 123-1234" },
-            { name: "Alex Joe",    email: "alex.joe@email.com",    phone: "(123) 123-1234" },
-            { name: "Mc Apple",    email: "mc.apple@email.com",    phone: "(123) 123-1234" },
-            { name: "Hello World", email: "hello.world@email.com", phone: "(123) 123-1234" },
-            { name: "Jenny Lenny", email: "jenny.lenny@email.com", phone: "(123) 123-1234" },
-            { name: "Adam Color",  email: "adam.color@email.com",  phone: "(123) 123-1234" },
-        ]
+.then(response => response.text())
+.then(() => {
+    const agents = [
+        { name: "John Doh",    email: "john.doh@email.com",    phone: "(123) 123-1234" },
+        { name: "Alex Joe",    email: "alex.joe@email.com",    phone: "(123) 123-1234" },
+        { name: "Mc Apple",    email: "mc.apple@email.com",    phone: "(123) 123-1234" },
+        { name: "Hello World", email: "hello.world@email.com", phone: "(123) 123-1234" },
+        { name: "Jenny Lenny", email: "jenny.lenny@email.com", phone: "(123) 123-1234" },
+        { name: "Adam Color",  email: "adam.color@email.com",  phone: "(123) 123-1234" },
+    ]
 
-        for (let i in agents) {
-            document.getElementById('agents').innerHTML +=
-            `
-            <div class="agents">
+    for (let i in agents) {
+        document.getElementById('agents').innerHTML +=
+        `
+        <div class="agents">
             <th class="bubble agentBubble" id="agents">
-            <p class="agentName">${agents[i].name}</p>
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-            </svg>
-            ${agents[i].email}
-            
-            <br>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-            </svg>
-            ${agents[i].phone}
+                <!-- Agent Name -->
+                <p class="agentName">${agents[i].name}</p>
+
+                <!-- Email Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                </svg>
+                ${agents[i].email}
+                
+                <br>
+                
+                <!-- Phone Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                </svg>
+                ${agents[i].phone}
 
             </th>
-            </div>
-            `;
-        }
-    })
-    .catch(error => console.error('Error fetching agents:', error));
+        </div>
+        `;
+    }
+})
+.catch(error => null,null);
 
 // Fetch and insert the content of input types into input-types.html
 fetch('./input-types.html')
-    .then(response => response.text())
-    .then(() => {
+.then(response => response.text())
+.then(() => {
 
-        const inputTypes = [
-            { type: "button" },
-            { type: "range" },
-            { type: "email" },
-            { type: "week" },
-            { type: "url" },
-            { type: "radio" },
-            { type: "checkbox" },
-            { type: "text" },
-            { type: "password" },
-            { type: "search" },
-            { type: "date" },
-            { type: "submit" },
-            { type: "color" },
-            { type: "file" },
-            { type: "datetime-local" },
-            { type: "email" },
-            { type: "image" },
-        ]
+    const inputTypes = [
+        { type: "button" },
+        { type: "range" },
+        { type: "email" },
+        { type: "week" },
+        { type: "url" },
+        { type: "radio" },
+        { type: "checkbox" },
+        { type: "text" },
+        { type: "password" },
+        { type: "search" },
+        { type: "date" },
+        { type: "submit" },
+        { type: "color" },
+        { type: "file" },
+        { type: "datetime-local" },
+        { type: "email" },
+        { type: "image" },
+    ]
 
-        for (let i in inputTypes) {
-            let type = inputTypes[i].type;
-            document.getElementById('inputTypes').innerHTML +=
-                `
-                <label for="${type}">${type}</label>
-                <input 
-                    class="inputBoxes" 
-                    value = "${type}"
-                    type  = "${type}"
-                    name  = "${type}"
-                > 
-                </input>
-                `;
-        }
-    })
-    .catch(error => console.error('Error fetching input types:', error));
+    for (let i in inputTypes) {
+        let type = inputTypes[i].type;
+        document.getElementById('inputTypes').innerHTML +=
+            `
+            <label for="${type}">${type}</label>
+            <input 
+                class="inputBoxes" 
+                value = "${type}"
+                type  = "${type}"
+                name  = "${type}"
+            > 
+            </input>
+            `;
+    }
+})
+.catch(error => null,null);
 
 // Fetch and insert the content of navbar.html
 fetch('./utils/navbar.html')
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById('navbarContainer').innerHTML = html;
-    })
-    .catch(error => console.error('Error fetching navbar:', error));
+.then(response => response.text())
+.then(html => {
+    document.getElementById('navbarContainer').innerHTML = html;
+})
+.catch(error => null,null);
 
 // Fetch and insert the content of banner.html
 fetch('./utils/banner.html')
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById('banner').innerHTML = html;
-    })
-    .catch(error => console.error('Error fetching banner:', error));
+.then(response => response.text())
+.then(html => {
+    document.getElementById('banner').innerHTML = html;
+})
+.catch(error => null,null);
 
 // Fetch and insert the content of footer.html
 fetch('./utils/footer.html')
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById('footer').innerHTML = html;
-    })
-    .catch(error => console.error('Error fetching footer:', error));
+.then(response => response.text())
+.then(html => {
+    document.getElementById('footer').innerHTML = html;
+})
+.catch(error => null,null);
+
+//load image array on home page (day 5 excercise)
+fetch('./')
+.then(response => response.text())
+.then(() => {
+    for (let i in imageArray){
+        let table = document.getElementById('imageArrayTable');
+        let row   = document.createElement('tr');
+        let img   = document.createElement('td');
+
+        img.innerHTML = `<img class="imageArrayPictures" src="${imageArray[i].name}" onclick="openAndCloseWindow('${imageArray[i].url}');">`;
+        row.appendChild(img);
+
+        let text = document.createElement('td');
+        text.innerHTML =
+        `
+        <div class="bubble3">
+            <a onclick="openAndCloseWindow('${imageArray[i].url}');"><h3 class="image-text-title">${imageArray[i].title}</h3></a>
+            <h4 class="image-text-description">${imageArray[i].description}</h4>
+        </div>
+        `;
+        row.appendChild(text);
+        table.appendChild(row);
+    }
+}).catch(error => null,null);
+
+//bonus script of bouncing ball for excercise wed may 22 2024
+document.addEventListener('DOMContentLoaded', () => {
+fetch('./')
+.then(response => response.text())
+.then(() => {
+
+    let canvas = document.getElementById('canvasBallWindow');
+    let ctx    = canvas.getContext('2d');
+    let w      = canvas.width;
+    let h      = canvas.height;
+
+    let x = w / 2;
+    let y = h / 2;
+
+    let dirx = +2;
+    let diry = -2;
+
+    function drawBall(){
+        ctx.clearRect(0,0,w,h);
+        ctx.beginPath();
+        ctx.arc(x,y,20,0,Math.PI * 2);
+        ctx.fillStyle = "lime";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function updateBallPosition(){
+        let gap = 20;
+
+        x += dirx;
+        y += diry;
+
+        if (x + dirx > w - gap || x + dirx < gap){
+            dirx = -dirx;
+        }
+        if (y + diry > h - gap || y + diry < gap){
+            diry = -diry;
+        }
+    }
+
+    function updateBall(){
+        updateBallPosition();
+        drawBall();
+        requestAnimationFrame(updateBall);
+    }
+    
+    updateBall();
+
+    }).catch(error => null, null);
+})
 
 //sign up button onclick func on register page
 function registerButton() {
@@ -132,33 +212,53 @@ function registerButton() {
         alert("Sign up success.");
         return true;
     }
+    return false;
+}
+
+//login button onclick func on login page
+function loginButton() {
+    alert("Login success.");
+    return true;
+}
+
+//feedback submit button on contact page
+function feedbackSubmit(){
+    let response = confirm("Are you sure you want to send your message?");
+    
+    if (response) {
+        alert("Feedback sent.");
+        return true;
+    }
+    return false;
 }
 
 //reset button onlick func on register page
 function resetButton() {
     let text  = weakText;
+    let response = confirm("Are you sure you want to clear all fields?");
 
-    document.getElementById("passwordMatch").innerHTML = "Password must not be empty."
-    document.getElementById("strongPassword").innerHTML = text;
-    return confirm("Are you sure you want to clear all fields?");
+    if (response) {
+        document.getElementById("passwordMatch").innerHTML = "Password must not be empty."
+        document.getElementById("strongPassword").innerHTML = text;
+        return true;
+    }
+    return false;
+}
+
+//Reset feedback button on contact page
+function resetFeedbackButton(){
+    return confirm("Are you sure you want to clear the field?");
 }
 
 //clamp value to min/max value
 function clamp(value, min, max) {
-    if (value > max) {
-        value = max;
-    }
-    if (value < min) {
-        value = min;
-    }
+    value = Math.max(min, Math.min(max, value));
     return value;
 }
 
 //function that controls the meter amount on the inputs page
 function increasePercent(increase, percentIncrease) {
-    if (increase === true)  percent += percentIncrease;
-    if (increase === false) percent -= percentIncrease;
-
+    percent += increase ? percentIncrease : -percentIncrease;
     percent = clamp(percent, 0, 1);
 
     let roundedPercent = Math.round(percent * 100);
@@ -168,34 +268,6 @@ function increasePercent(increase, percentIncrease) {
     document.getElementById('meter-text').innerHTML =
         `${roundedPercent}%`;
 }
-
-//load image array on home page (day 5 excercise)
-fetch('./')
-    .then(response => response.text())
-    .then(() => {
-    for (let i in imageArray){
-        let table = document.getElementById('imageArrayTable');
-        let row   = document.createElement('tr');
-        let img   = document.createElement('td');
-
-        img.innerHTML = `<img class="imageArrayPictures" src="${imageArray[i].name}" onclick="openAndCloseWindow('${imageArray[i].url}');">`;
-        row.appendChild(img);
- 
-        let text = document.createElement('td');
-        text.innerHTML =
-        `
-        <div class="bubble3">
-            <a onclick="openAndCloseWindow('${imageArray[i].url}');"><h3 class="image-text-title">${imageArray[i].title}</h3></a>
-            <h4 class="image-text-description">${imageArray[i].description}</h4>
-        </div>
-        `;
-        row.appendChild(text);
-        table.appendChild(row);
-    }
-
-    bonusBlock();
-
-}).catch(error => console.error('Error fetching image array:', error));
 
 function displayPicture(txt){
     for (let i in imageArray){
@@ -261,57 +333,15 @@ function openAndCloseWindow(_url){
 
 //redirect window function
 function redirectWindow(newWindowDocument, _url){
-        let paragraph = newWindowDocument.createElement("p");
-        let anchor = newWindowDocument.createElement("a");
-        let textNode  = newWindowDocument.createTextNode("This page will soon close. If not redirected automatically, ");
+    let paragraph = newWindowDocument.createElement("p");
+    let anchor = newWindowDocument.createElement("a");
+    let textNode  = newWindowDocument.createTextNode("This page will soon close. If not redirected automatically, ");
 
-        anchor.href = _url;
-        anchor.textContent = "click here"
+    anchor.href = _url;
+    anchor.textContent = "click here"
 
-        paragraph.appendChild(textNode);
-        paragraph.appendChild(anchor);
-        newWindowDocument.body.appendChild(paragraph);
+    paragraph.appendChild(textNode);
+    paragraph.appendChild(anchor);
+    newWindowDocument.body.appendChild(paragraph);
 }
 
-//bonus script of bouncing ball for excercise wed may 22 2024
-document.addEventListener('DOMContentLoaded', () => {
-    let canvas = document.getElementById('canvasBallWindow');
-    let ctx    = canvas.getContext('2d');
-    let w      = canvas.width;
-    let h      = canvas.height;
-
-    let x = w / 2;
-    let y = h / 2;
-
-    let dirx = +2;
-    let diry = -2;
-
-    function drawBall(){
-        ctx.clearRect(0,0,w,h);
-        ctx.beginPath();
-        ctx.arc(x,y,20,0,Math.PI * 2);
-        ctx.fillStyle = "lime";
-        ctx.fill();
-        ctx.closePath();
-    }
-
-    function updateBallPosition(){
-        x+=dirx;
-        y+=diry;
-        let gap = 20
-
-        if (x + dirx > w - gap || x + dirx < gap){
-            dirx = -dirx;
-        }
-        if (y + diry > h - gap || y + diry < gap){
-            diry = -diry;
-        }
-    }
-
-    function updateBall(){
-        updateBallPosition();
-        drawBall();
-        requestAnimationFrame(updateBall);
-    }
-    updateBall();
-})

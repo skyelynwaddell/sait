@@ -4,6 +4,7 @@ CRPG-210-A */
 
 .banner {
   width: 100%;
+  min-height:6em;
   justify-content: center;
   align-items: center;
 }
@@ -30,6 +31,13 @@ table {
   width: 5em;
 }
 
+.inlineButtons{
+  display: inline-flex;
+  justify-content: center;
+  gap:10px;
+  margin:0 auto;
+}
+
 .termsText {
   padding-left: 5px;
 }
@@ -39,11 +47,19 @@ table {
   width: 100%;
   display: inline-block;
   margin-bottom: 10px;
+  transition-duration: 0.5s;
+}
+
+.agentBubble:hover{
+  transform: scale(1.03);
 }
 
 .agentName {
   margin: auto;
   font-size: x-large;
+  background-color: rgba(0, 0, 0, 0.226);
+  width:10em;
+  border-radius: 10px;
 }
 
 .meter-buttons {
@@ -218,7 +234,7 @@ pre {
 
 .imageArrayPictures {
   border-radius: 10px;
-  width: 10em;
+  width: 9em;
   height: 7em;
   display: block;
   margin: auto;
@@ -338,6 +354,19 @@ footer {
   background-color: rgba(128, 128, 128, 0.527);
   padding: 10px;
   border-radius: 5px;
+}
+
+/* Remove Arrows/Spinners from Number inputs */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 @media only screen and (min-width: 767px) {
