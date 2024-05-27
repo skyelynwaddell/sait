@@ -1,10 +1,13 @@
 // Created by Skye Waddell
 // May 2024 | OOSD - Web Development | Travel Project
 // CRPG-210-A
+
+//text values for register page
 const weakText   = "Password Strength: WEAK ⛔";
 const shortText  = "Password Strength: SHORT ✅";
 const strongText = "Password Strength: STRONG ✅";
 
+//image array that is displayed on homepage
 const imageArray = [
     { name : "https://media.gettyimages.com/id/182175143/photo/photo-of-some-white-whispy-clouds-and-blue-sky-cloudscape.jpg?s=612x612&w=0&k=20&c=4pM1uET260cVlZooulBBBjST9Cx-uzKwBNNYyn3AN_k=",                                  title: "Image #1", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "https://google.com/" },
     { name : "https://media.gettyimages.com/id/1297349747/photo/hot-air-balloons-flying-over-the-botan-canyon-in-turkey.jpg?s=612x612&w=0&k=20&c=kt8-RRzCDunpxgKFMBBjZ6jSteetNhhSxHZFvHQ0hNU=",                                   title: "Image #2", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "http://amazon.com/" },
@@ -12,7 +15,7 @@ const imageArray = [
     { name : "https://media.gettyimages.com/id/1180055107/photo/woman-in-a-gondola.jpg?s=612x612&w=0&k=20&c=4hRqNRkoKZN1LtNHg30VbSY50pqCO3o9JTzrikqtbfw=",                                                                        title: "Image #4", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "http://apple.com/" },
     { name : "https://media.gettyimages.com/id/1094338162/photo/summers-a-time-for-adventure.jpg?s=612x612&w=0&k=20&c=WBA3fgSawaK60gnorXxSvReblySZ4m2ej7U9H5AP8Kc=",                                                              title: "Image #5", description:"Lorem, ipsum dolor sit amet consectetur adipisicing elit.", url: "http://bing.com/" },
 ]
-
+ //load the agents table from array to the contact page
 fetch('./contact.html')
 .then(response => response.text())
 .then(() => {
@@ -144,7 +147,8 @@ fetch('./')
         row.appendChild(text);
         table.appendChild(row);
     }
-}).catch(error => null,null);
+})
+.catch(error => null,null);
 
 //bonus script of bouncing ball for excercise wed may 22 2024
 document.addEventListener('DOMContentLoaded', () => {
@@ -163,7 +167,7 @@ fetch('./')
     let dirx = +2;
     let diry = -2;
 
-    function drawBall(){
+    let drawBall = function(){
         ctx.clearRect(0,0,w,h);
         ctx.beginPath();
         ctx.arc(x,y,20,0,Math.PI * 2);
@@ -172,7 +176,7 @@ fetch('./')
         ctx.closePath();
     }
 
-    function updateBallPosition(){
+    let updateBallPosition = function(){
         let gap = 20;
 
         x += dirx;
@@ -186,7 +190,7 @@ fetch('./')
         }
     }
 
-    function updateBall(){
+    let updateBall = function(){
         updateBallPosition();
         drawBall();
         requestAnimationFrame(updateBall);
@@ -194,25 +198,72 @@ fetch('./')
     
     updateBall();
 
-    }).catch(error => null, null);
+    })
+    .catch(error => null, null);
 })
 
 //sign up button onclick func on register page
 function registerButton() {
-    let response = confirm("Are you sure you want to sign up?");
-    let pass1 = document.getElementById("registerPassword1").value;
-    let pass2 = document.getElementById("registerPassword2").value;
+    let response   = confirm("Are you sure you want to sign up?");
+    let pass1      = document.getElementById("registerPassword1").value;
+    let pass2      = document.getElementById("registerPassword2").value;
+    let postalCode = document.getElementById("postalCode").value;
+    let zipType    = document.getElementById("postalCode").name;
+    let username   = document.getElementById("registerUsername").value;
 
+    let validateFailed = function(description){
+        let inputDescription = document.getElementById("inputDescription");
+
+        //set the visibility true, and change the text of the input description
+        inputDescription.style.visibility = "visible";
+        inputDescription.style.display    = "block";
+        inputDescription.innerHTML        = description;
+
+        //scroll window to inputDescription element
+        document.getElementById("inputDescription").scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        return false;
+    }
+
+    // Regex 
+    let usernameRegex   = /^\S+$/;
+    let postalCodeRegex = /^[A-Z]\d[A-Z] ?\d[A-Z]\d$/;
+    let zipCodeRegex    = /^\d{5}(?:-\d{4})?$/;
+
+    let postalRegexCheck = zipType === "Postal Code" ? postalCodeRegex : zipCodeRegex;
+
+    //check if username has any spaces
+    if (usernameRegex.test(username) === false){
+        return validateFailed("Usernames cannot have SPACES!");
+    }
+
+    //check if postal/zip code is correctly formatted
+    if (postalRegexCheck.test(postalCode) === false) {
+        return validateFailed(`Please enter a valid ${zipType}!`);
+    }
+
+    //on form submit 
     if (response) {
+
+        //compare password fields
         if (pass1 !== pass2) {
-            alert("Passwords do not match.");
-            return false;
+            return validateFailed("Password(s) DON'T match!!");
         }
 
-        alert("Sign up success.");
-        return true;
+        if (pass1.length <= 4 || pass2.length <= 4){
+            return validateFailed("Please strengthen your password!");
+        }
+        
+        return signUp();
     }
-    return false;
+
+    return validateFailed("Error! Please try again.");
+}
+
+function signUp(){
+    //Execute code here that succeeds
+    alert("Sign up success.");
+    return true;
 }
 
 //login button onclick func on login page
@@ -234,11 +285,11 @@ function feedbackSubmit(){
 
 //reset button onlick func on register page
 function resetButton() {
-    let text  = weakText;
+    let text     = weakText;
     let response = confirm("Are you sure you want to clear all fields?");
 
     if (response) {
-        document.getElementById("passwordMatch").innerHTML = "Password must not be empty."
+        document.getElementById("passwordMatch").innerHTML  = "Password must not be empty."
         document.getElementById("strongPassword").innerHTML = text;
         return true;
     }
@@ -269,19 +320,7 @@ function increasePercent(increase, percentIncrease) {
         `${roundedPercent}%`;
 }
 
-function displayPicture(txt){
-    for (let i in imageArray){
-        if (imageArray[i].title === txt){
-
-            let index = imageArray[i];
-            let message = `${index.name} ${index.title} ${index.description}`;
-
-            console.log(message);
-            alert(message);
-        }
-    }
-}
-
+//check password strength on the register page
 function checkPasswordStrength(){
     let field = document.getElementById("registerPassword1");
     let passwordStrength = document.getElementById("strongPassword");
@@ -301,6 +340,7 @@ function checkPasswordStrength(){
     passwordStrength.innerHTML = text;
 }
 
+//match password function from the register page
 function matchPassword(){
     let pass1 = document.getElementById("registerPassword1").value;
     let pass2 = document.getElementById("registerPassword2").value;
@@ -309,12 +349,13 @@ function matchPassword(){
         document.getElementById("passwordMatch").innerHTML = "Passwords DON'T match! ⛔";
     }
     else if (pass1.length <= 0){
-            document.getElementById("passwordMatch").innerHTML = "Password must not be empty.";
+        document.getElementById("passwordMatch").innerHTML = "Password must not be empty.";
     } else {
         document.getElementById("passwordMatch").innerHTML = "Passwords match! ✅";
     }
 }
 
+//open and close window automatically for excerice 7 function
 function openAndCloseWindow(_url){
     let newWindow = window.open('', '', 'width=640, height=480');
     let newWindowDocument = newWindow.document;
@@ -334,7 +375,7 @@ function openAndCloseWindow(_url){
 //redirect window function
 function redirectWindow(newWindowDocument, _url){
     let paragraph = newWindowDocument.createElement("p");
-    let anchor = newWindowDocument.createElement("a");
+    let anchor    = newWindowDocument.createElement("a");
     let textNode  = newWindowDocument.createTextNode("This page will soon close. If not redirected automatically, ");
 
     anchor.href = _url;
@@ -345,3 +386,115 @@ function redirectWindow(newWindowDocument, _url){
     newWindowDocument.body.appendChild(paragraph);
 }
 
+//onclick frog change the visibility
+function toggleFrogVisible(frogPos){
+
+    //select frogs from the dom
+    let frog       = document.getElementById(frogPos);
+    let frogLeft   = document.getElementById("frogLeft");
+    let frogCenter = document.getElementById("frogCenter");
+    let frogRight  = document.getElementById("frogRight");
+
+    //set all frogs invisible
+    frogLeft.style.visibility   = "hidden";
+    frogCenter.style.visibility = "hidden";
+    frogRight.style.visibility  = "hidden";
+
+    //set frog that was clicked to visible
+    frog.style.visibility = "visible";
+}
+
+//display input description on register input onfocus
+function registerInputFocus(elementID){
+
+    //input description string
+    let description = `Please enter your ${document.getElementById(elementID).name}`
+
+    //set the visibility true, and change the text of the input description
+    //to match the selected input box
+    document.getElementById("inputDescription").style.visibility = "visible";
+    document.getElementById("inputDescription").style.display = "block";
+    document.getElementById("inputDescription").innerHTML = description;
+}
+
+//hide the input description on register input onblur
+function registerInputBlur(){
+    document.getElementById("inputDescription").style.visibility = "hidden";
+    document.getElementById("inputDescription").style.display = "none";
+}
+
+//function that gets called when we select a different country
+//on the register page
+function changeCountry(selectElement){
+
+    let selectedOption = selectElement.options[selectElement.selectedIndex];
+    let selectedText   = selectedOption.text;
+
+    let zipType   = "Postal Code";
+    let stateType = "Province";
+
+    //decide what the text should say
+    zipType   = selectedText === "Canada" ? "Postal Code" : "Zip Code";
+    stateType = selectedText === "Canada" ? "Province"    : "State";
+
+    //change postal code field to correct text
+    document.getElementById("postalCode").placeholder   = zipType;
+    document.getElementById("postalCode").name          = zipType;
+    document.getElementById("postalCodeText").innerHTML = zipType;
+
+    //change province field to correct text
+    document.getElementById("registerProvince").placeholder = stateType;
+    document.getElementById("registerProvince").name        = stateType;
+    document.getElementById("provinceText").innerHTML       = stateType;
+}
+
+//click the pie function
+function pumpkinPie(){
+    let value = document.getElementById("pieText").style.display;
+    let switchValue = value === "block" ? "none" : "block";
+
+    switch(value){
+        case "block": 
+            value = "none";
+            document.getElementById("pieTitle").innerHTML = "Click the PIE!";
+            document.getElementById("pieImage").src = "./img/pie.png";
+        break;
+        default:
+        case "none":  
+            value = "block";
+            document.getElementById("pieTitle").innerHTML = "Click the &Pi;!";
+            document.getElementById("pieImage").src = "./img/pi.png";
+        break
+    }
+
+    document.getElementById("pieText").innerHTML = Math.PI;
+    document.getElementById("pieText").style.display = switchValue;
+}
+
+//simple clock component using the Date function we learned about
+function updateClock() {
+
+    //verify the clock component exists on this page
+    if (document.getElementById('time') === null) return;
+
+    var now     = new Date();
+    var hours   = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var ampm    = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12; //modulus 12 and we get the remainder which will be our time 🙂
+    hours = hours ? hours : 12; // The hour '0' should be '12' in 12-hour clock format
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    var timeString = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+
+    document.getElementById('time').textContent = timeString;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+// Initial call to display the clock immediately
+updateClock();

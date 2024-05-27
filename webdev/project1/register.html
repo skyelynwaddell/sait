@@ -57,14 +57,23 @@
                       <th class="bubble">
 
                         <!-- Form Submission -->
-                        <form onsubmit="return registerButton()">
+                        <form onsubmit="return registerButton();" id="registerForm" name="registerForm">
                           <div class="registerForms">
+
+                             <!-- Dynamic Input Description -->
+                             <div class="inputDescription">
+                              <p id="inputDescription" class="strongPassword">Loading...</p>
+                            </div>
 
                             <!-- Email -->
                             <div class="registerBlock">
                               <p class="registerLabel">Email: </p>
                               <input required class="inputBox"
-                                placeholder="Email" type="email" name="Email"
+                                autocomplete="email"
+                                onfocus="registerInputFocus('registerEmail');"
+                                onblur="registerInputBlur();"
+                                placeholder="Email" type="email" 
+                                name="Email"
                                 id="registerEmail" />
                             </div>
 
@@ -72,6 +81,9 @@
                             <div class="registerBlock">
                               <p class="registerLabel">Username: </p>
                               <input required class="inputBox"
+                                autocomplete="name"
+                                onfocus="registerInputFocus('registerUsername');"
+                                onblur="registerInputBlur();"
                                 placeholder="Username" type="name"
                                 name="Username"
                                 id="registerUsername" />
@@ -81,9 +93,11 @@
                             <div class="registerBlock">
                               <p class="registerLabel">Password: </p>
                               <input required class="inputBox"
+                                onfocus="registerInputFocus('registerPassword1');"
+                                onblur="registerInputBlur();"
                                 oninput="checkPasswordStrength(); matchPassword();"
                                 placeholder="Password" type="password"
-                                name="password"
+                                name="Password"
                                 id="registerPassword1" />
                             </div>
 
@@ -91,27 +105,37 @@
                             <div class="registerBlock">
                               <p class="registerLabel">Confirm Password: </p>
                               <input required class="inputBox"
+                                onfocus="registerInputFocus('registerPassword2');"
+                                onblur="registerInputBlur();"
                                 oninput=" matchPassword();"
                                 placeholder="Confirm Password" type="password"
-                                name="password"
+                                name="Confirmed Password"
                                 id="registerPassword2" />
                             </div>
 
                             <!-- Country -->
                             <div class="registerBlock">
                               <p class="registerLabel">Country: </p>
-                              <select>
-                                <option value="country1">Canada</option>
-                                <option value="country2">USA</option>
+                              <select id="registerCountry"
+                                name="Country"
+                                onfocus="registerInputFocus('registerCountry');"
+                                onblur="registerInputBlur();"
+                                onchange="changeCountry(this);"
+                                >
+                                <option id="Canada" name="Canada" value="country1">Canada</option>
+                                <option id="USA" name="USA" value="country2">USA</option>
                               </select>
                               <br>
                             </div>
 
                             <!-- Province/State -->
                             <div class="registerBlock">
-                              <p class="registerLabel provinceText">Province</p>
+                              <p id="provinceText" class="registerLabel provinceText">Province</p>
                               <input required class="inputBox"
-                                placeholder="Province" type="state" name="state"
+                                onfocus="registerInputFocus('registerProvince');"
+                                onblur="registerInputBlur();"
+                                placeholder="Province" type="state" 
+                                name="Province"
                                 id="registerProvince" />
                             </div>
 
@@ -119,16 +143,21 @@
                             <div class="registerBlock">
                               <p class="registerLabel">City: </p>
                               <input required class="inputBox"
-                                placeholder="City" type="city" name="city"
+                                onfocus="registerInputFocus('registerCity');"
+                                onblur="registerInputBlur();"
+                                placeholder="City" type="city" 
+                                name="City"
                                 id="registerCity" />
                             </div>
 
                             <!-- Postal/Zip Code -->
                             <div class="registerBlock">
-                              <p class="registerLabel">Postal Code: </p>
+                              <p id="postalCodeText" class="registerLabel">Postal Code: </p>
                               <input required class="inputBox"
+                                onfocus="registerInputFocus('postalCode');"
+                                onblur="registerInputBlur();"
                                 placeholder="Postal Code" type="text"
-                                name="postalCode"
+                                name="Postal Code"
                                 id="postalCode" />
                             </div>
 
@@ -136,8 +165,10 @@
                             <div class="registerBlock">
                               <p class="registerLabel">Travel Card: </p>
                               <input required class="inputBox"
+                                onfocus="registerInputFocus('travelCardNumber');"
+                                onblur="registerInputBlur();"
                                 placeholder="Travel Card No." type="number"
-                                name="number"
+                                name="Travel Card Number"
                                 id="travelCardNumber" min=1 max=999999999 />
                             </div>
 
@@ -154,6 +185,8 @@
                                 class="strongPassword">Password must not be
                                 empty.</h2>
                             </div>
+
+                           
 
                             <!-- Robot Check / Agree to terms -->
                             <div class="bubble2">

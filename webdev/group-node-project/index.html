@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text"     onfocus="changeName('Email')"    onblur="hideElement()">
+    <input type="password" onfocus="changeName('Password')" onblur="hideElement()">
+    <input type="text"     onfocus="changeName('Phone')"    onblur="hideElement()">
+    <input type="number"   onfocus="changeName('Date')"     onblur="hideElement()">
+
+    <h3 id="placeholderText">Loading...</h3>
+
+   <script>
+        function changeName(text)
+        {
+            document.getElementById("placeholderText").style.visibility = "visible";
+            document.getElementById("placeholderText").innerText = text;
+        }
+
+        function hideElement()
+        {
+            document.getElementById("placeholderText").style.visibility = "hidden";
+        }
+    </script>
+    
+</body>
+</html>

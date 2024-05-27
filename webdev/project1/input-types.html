@@ -24,7 +24,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous">
     </script>
-    
+
   </head>
 
   <body>
@@ -34,7 +34,7 @@
 
     <!-- Container that holds all the website contents -->
     <div class="container">
-      
+
       <!-- Navbar -->
       <div id="navbarContainer"></div>
 
@@ -46,6 +46,8 @@
         <table>
           <tr>
             <th>
+
+              <!-- Input types section -->
               <div class="inner-container">
                 <h1 class="title">Input Types</h1>
                 <hr />
@@ -55,15 +57,32 @@
                       <th class="bubble">
                         <div class="registerForms" id="inputTypes"></div>
 
+                        <var>var</var>
+
                         <label for="pre" class="registerForms">pre</label>
 
-<!-- pre text adds spaces to text so we must keep it the left out of indentation -->
-<pre id="pre">
+                        <!-- pre text adds spaces to text so we must keep it the left out of indentation -->
+                        <pre id="pre">
 //code can go in here
 function print(text){
   console.log(text);
 }
 </pre>
+
+                        <label for="code" class="registerForms">code</label>
+
+                        <code>
+                          function print(text) {
+                          console.log(text)
+                          }
+                        </code>
+
+                        <label for="code" class="registerForms">progress</label>
+                        <progress></progress>
+
+                        <label for="code" class="registerForms">q</label>
+                        <q>quotations</q>
+
                         <div class="registerForms">
                           <label for="dropdown">select</label>
                           <select class="inputBoxes" name="dropdown"
@@ -95,7 +114,7 @@ function print(text){
                               onclick="increasePercent(true,0.1)">+</button>
                           </div>
 
-                          <script>
+                      <script>
 
                         var percent = 0.1;
                         var meter = document.getElementById("meter");

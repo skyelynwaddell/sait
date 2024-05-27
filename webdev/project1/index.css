@@ -4,7 +4,7 @@ CRPG-210-A */
 
 .banner {
   width: 100%;
-  min-height:6em;
+  min-height: 6em;
   justify-content: center;
   align-items: center;
 }
@@ -31,11 +31,11 @@ table {
   width: 5em;
 }
 
-.inlineButtons{
+.inlineButtons {
   display: inline-flex;
   justify-content: center;
-  gap:10px;
-  margin:0 auto;
+  gap: 10px;
+  margin: 0 auto;
 }
 
 .termsText {
@@ -50,7 +50,7 @@ table {
   transition-duration: 0.5s;
 }
 
-.agentBubble:hover{
+.agentBubble:hover {
   transform: scale(1.03);
 }
 
@@ -58,7 +58,7 @@ table {
   margin: auto;
   font-size: x-large;
   background-color: rgba(0, 0, 0, 0.226);
-  width:10em;
+  width: 10em;
   border-radius: 10px;
 }
 
@@ -174,6 +174,11 @@ pre {
   overflow-x: auto;
 }
 
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:focus {
+  color:white;
+  background-color: grey;
+}
+
 .bubble {
   background-color: rgba(255, 255, 255, 0.582);
   border-radius: 10px;
@@ -241,8 +246,7 @@ pre {
   transition-duration: 0.5s;
 }
 
-.imageArrayPictures:hover,
-.bubble3:hover {
+.imageArrayPictures:hover {
   transform: scale(1.05);
 }
 
@@ -270,11 +274,12 @@ pre {
   text-align: left;
   text-decoration: underline;
   color: rgb(0, 0, 137);
+  transition-duration: 0.2s;
 }
 
 .image-text-title:hover {
   cursor: pointer;
-  color: rgb(37, 51, 175);
+  color: rgb(76, 90, 223);
 }
 
 .image-text-description {
@@ -289,11 +294,20 @@ select {
 }
 
 .underline-hover {
+  color:white;
   text-decoration: none;
 }
 
 .underline-hover:hover {
+  color:white;
   text-decoration: underline;
+}
+
+
+#inputDescription{
+  display:none;
+  visibility: hidden;
+  font-weight:600;
 }
 
 #canvasBallWindow {
@@ -301,6 +315,50 @@ select {
   width: 96%;
   border-radius: 10px;
   margin: 10px auto;
+}
+
+.lillypads{
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+}
+
+.lillypad{
+  position:relative;
+  margin: 0 auto;
+  width:7em;
+  transition-duration: 0.5s;
+}
+
+.lillypad:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#frogLeft,
+#frogCenter,
+#frogRight{
+  width: 10em;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+#frogLeft,
+#frogRight{
+  visibility: hidden;
+}
+
+.frogLeft{
+  position: sticky;
+  left:0;
+}
+
+.frogRight{
+  position: absolute;
+  right:0;
 }
 
 hr {
@@ -345,6 +403,7 @@ h2 {
 
 .navbar,
 footer {
+  color:white;
   background-color: rgb(46, 46, 46);
 }
 
@@ -354,6 +413,63 @@ footer {
   background-color: rgba(128, 128, 128, 0.527);
   padding: 10px;
   border-radius: 5px;
+}
+
+.pumpkinPie{
+  width:200px;
+  transition-duration: 0.2s;
+  border:0cap;
+  background-color: grey;
+  border-radius:10px;
+}
+
+.pumpkinPie:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.pieText{
+  margin:20px;
+  padding:10px;
+  background-color: rgba(255, 255, 255, 0.328);
+  border-radius: 10px;
+}
+
+#pieText{
+  display:none;
+}
+
+.clock{
+  font-size:x-large;
+}
+
+#coin{
+  background-color: rgba(0, 0, 0, 0.176);
+  padding:10px;
+  width:10em;
+  margin:0 auto;
+  border-radius: 10px;
+}
+
+#coinIcon{
+  width:100px;
+  image-rendering: pixelated; 
+  image-rendering: crisp-edges;
+  margin:0 auto;
+
+}
+
+/* change all input fields to same height */
+select,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="state"],
+input[type="city"],
+input[type="name"]
+{
+  height:30px;
 }
 
 /* Remove Arrows/Spinners from Number inputs */

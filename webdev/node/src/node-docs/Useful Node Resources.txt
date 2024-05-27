@@ -1,0 +1,27 @@
+Node:
+https://www.tutorialspoint.com/nodejs/nodejs_quick_guide.htm
+https://www.w3schools.com/nodejs/ref_events.asp
+https://www.w3schools.com/nodejs/nodejs_raspberrypi.asp
+
+Express:
+https://expressjs.com/
+https://www.tutorialspoint.com/nodejs/nodejs_express_framework.htm
+https://www.tutorialspoint.com/nodejs/nodejs_restful_api.htm
+https://expressjs.com/en/resources/middleware/body-parser.html
+
+EJS Template Engine:
+https://ejs.co/#install
+https://github.com/mde/ejs
+https://learnwebtutorials.com/tutorial-using-ejs-with-express
+
+Pug Template Engine:
+https://pugjs.org/api/getting-started.html
+https://html-to-pug.com/
+https://www.sitepoint.com/a-beginners-guide-to-pug/
+https://stackshare.io/stackups/pug-vs-semantic-ui
+https://flaviocopes.com/pug/
+
+JSON Data Generator:
+https://randomuser.me/api/?results=25
+	--returns a json data file of users for your experiments
+

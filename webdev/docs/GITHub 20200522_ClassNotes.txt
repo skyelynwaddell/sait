@@ -1,0 +1,29 @@
+Setup Commands:
+# To turn an existing project folder into a repo:
+git init
+# To clone an existing repo from the internet:
+git clone <repo URL>
+# Eg. git clone https://github.com/linden-peters-sait/HelloWeb.git
+
+Basic Git Workflow:
+# Change files.
+# Stage changes:
+git add *
+# Preview changes:
+git status
+# Commit staged changes:
+git commit -m "Descriptive message."
+# Push changes to Github:
+git push
+# Sync with remote, if needed:
+git pull
+
+Additional Setup Commands, for use with "git init":
+# To set Git identity information:
+git config --global user.name "Linden Peters"
+git config --global user.email "linden.peters@sait.ca"
+# To amend last commit (before push) with updated identity:
+git commit --amend --reset-author
+# To set remote origin, after commit, before first push:
+git remote add origin https://github.com/linden-peters-sait/Demo.git
+git push -u origin master
