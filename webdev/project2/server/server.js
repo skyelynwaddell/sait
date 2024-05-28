@@ -3,8 +3,10 @@ const express   = require("express");
 const app       = express();
 const path      = require("path");
 const mysql     = require("mysql");
+const modules   = require("./modules.js")
 const DBService = require("./database.js");
 
+app.use(express.urlencoded())
 app.use(express.json());
 app.set("view engine","ejs");
 app.use(express.static(__dirname + '/public/'));
@@ -81,6 +83,7 @@ app.get("/sign-up", (request,response) => {
     })
     .catch(err => console.log(err))
 })
+
 // login page
 app.get("/login", (request,response) => {
     const db = DBService.getDbServiceInstance();
@@ -101,7 +104,7 @@ app.get("/login", (request,response) => {
     .catch(err => console.log(err))
 })
 
-//create
+//create post
 app.post("/create-post", (request,response) => {
     const username = "Skye98";
     const { content } = request.body;
@@ -117,6 +120,30 @@ app.post("/create-post", (request,response) => {
     result
     .then(data => response.json({ success: true }))
     .catch(err => console.log(err)) 
+ })
+
+//sign up
+app.post("/sign-up", (request,response) => {
+    console.log(request.body)
+    const { email, username, password, password_confirm } = request.body;
+    const db = DBService.getDbServiceInstance();
+
+    if (password !== password_confirm) {
+        return response.send("<h1>404</h1>")
+    }
+
+    let userData = {
+        email: email,
+        username: username,
+        password: password,
+    }
+
+    const result = db.createNewUser(userData);
+
+    result
+    .then(data => response.json({ success: true }))
+    .catch(err => console.log(err)) 
+
  })
 
 // read

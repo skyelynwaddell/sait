@@ -9,7 +9,7 @@ const mysql     = require("mysql");
 const myModule  = require("./greetings.js")
 
 const ip = "localhost";
-const port = 5234;
+const port = 5344;
 
 app.set("view engine","ejs");
 app.use(express.static(__dirname + '/public/'));

@@ -38,6 +38,7 @@ class DBService{
 
     async createNewUser(data){
         try{
+            let date = new Date();
             const insertId = await new Promise((resolve,reject) => {
                 const query = "INSERT INTO users (username, password, posts, following, followers, date) VALUES (?, ?, ?, ?, ?, ?);";
 
