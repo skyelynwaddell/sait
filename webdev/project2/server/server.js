@@ -3,38 +3,56 @@ const express   = require("express");
 const app       = express();
 const path      = require("path");
 const mysql     = require("mysql");
-const modules   = require("./modules.js")
+const modules   = require("./modules.js");
+const session   = require("express-session");
+const bcrypt    = require("bcrypt");
+const passport  = require("passport");
+const flash     = require("express-flash");
 const DBService = require("./database.js");
-
-app.use(express.urlencoded())
-app.use(express.json());
-app.set("view engine","ejs");
-app.use(express.static(__dirname + '/public/'));
+const initPassport = require("./passport-config.js");
 
 const ip   = "localhost";
 const port = 5000;
+var users = [];
+let db = DBService.getDbServiceInstance();
 
-const userData = {
-    username : "SkyeWaddell97",
-    posts: 400,
-    following: 300,
-    followers: 100,
-}
+initPassport(passport,db.getUserByEmail);
 
-const postData = [
-    {
-    username : "SkyeWaddell97",
-    content : "Hey whats going on people!",
-    likes : 34,
-    reposts: 123,
-    comments: 192,
-    },
-]
+app.set("view engine","ejs");
+app.use(flash());
+app.use(express.urlencoded());
+app.use(express.json());
+app.use(express.static(__dirname + '/public/'));
 
-const recommendedUsers = [
-    { username: "Joh234" },
-    { username: "AppleSmith223" },
-]
+app.use(session({
+    secret : "h7K@s^4CF@d4$@#T%sdDSUF@3rk3!23v$#%",
+    resave : false,
+    saveUninitialized : false, 
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Authenticate that we are logged in, or else limit site exploration to the login / register page
+const ensureAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        if (req.path === "/login" || req.path === "/sign-up") {
+            return res.redirect("/"); 
+        } 
+        return next();
+    }
+    // If user is not authenticated and not on the login/register page, redirect to login page
+    if (req.path !== "/login" && req.path !== "/sign-up") {
+        return res.redirect("/login");
+    } 
+    // If user is not authenticated but on the login/register page, or is already on the login page, proceed to the next middleware
+    next();
+};
+
+// Apply the ensureAuthenticated middleware to all routes except /login and /register
+app.use((req, res, next) => {
+    ensureAuthenticated(req, res, next);
+});
 
 // homepage / read
 app.get("/", (request,response) => {
@@ -44,23 +62,22 @@ app.get("/", (request,response) => {
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
 
+    console.log(request.session);
+
     Promise.all([postDataPromise,userDataPromise])
     .then(([postData,userData]) => {
+
+        let profileData = request.user// === undefined ? userDataPromise : request.user;
+
         response.render("index", {
-            userData: userData,
+            userData: profileData,
             allUsers: userData,
             postData: postData.slice().reverse().splice(0,postsPerPage),
             recommendedUsers: userData
         })
+        console.log(postData)
+
     })
-    // result
-    // .then(data => response.render("index",
-    // {
-    //     data:data,
-    //     userData:userData,
-    //     postData:data.slice().reverse().splice(0,postsPerPage),
-    //     recommendedUsers: recommendedUsers
-    // }))
     .catch(err => console.log(err))
 })
 
@@ -74,8 +91,10 @@ app.get("/sign-up", (request,response) => {
 
     Promise.all([postDataPromise,userDataPromise])
     .then(([postData,userData]) => {
+        let profileData = request.user //=== undefined ? userDataPromise : request.user;
+
         response.render("sign-up", {
-            userData: userData,
+            userData: profileData,
             allUsers: userData,
             postData: postData.slice().reverse().splice(0,postsPerPage),
             recommendedUsers: userData
@@ -94,8 +113,9 @@ app.get("/login", (request,response) => {
 
     Promise.all([postDataPromise,userDataPromise])
     .then(([postData,userData]) => {
+        let profileData = request.user //=== undefined ? userDataPromise : request.user;
         response.render("login", {
-            userData: userData,
+            userData: profileData,
             allUsers: userData,
             postData: postData.slice().reverse().splice(0,postsPerPage),
             recommendedUsers: userData
@@ -104,9 +124,9 @@ app.get("/login", (request,response) => {
     .catch(err => console.log(err))
 })
 
-//create post
+//create new post
 app.post("/create-post", (request,response) => {
-    const username = "Skye98";
+    const username = request.user.username; // Get the username from request.user
     const { content } = request.body;
     const db = DBService.getDbServiceInstance();
 
@@ -122,37 +142,122 @@ app.post("/create-post", (request,response) => {
     .catch(err => console.log(err)) 
  })
 
-//sign up
-app.post("/sign-up", (request,response) => {
-    console.log(request.body)
-    const { email, username, password, password_confirm } = request.body;
+ //delete post
+ app.post("/delete-post", (request,response) => {
     const db = DBService.getDbServiceInstance();
+    const username = request.user.username; // Get the username from request.user
 
-    if (password !== password_confirm) {
-        return response.send("<h1>404</h1>")
-    }
+    let { postID } = request.body;
 
-    let userData = {
-        email: email,
+    let data = {
+        id: postID,
+        tableName: "posts",
         username: username,
-        password: password,
     }
 
-    const result = db.createNewUser(userData);
+    const result = db.deletePost(data)
 
     result
     .then(data => response.json({ success: true }))
     .catch(err => console.log(err)) 
 
+    console.log(request.body);
  })
 
-// read
+//like/dislike post
+app.post("/like-post", async (request,response) => {
+    const db = DBService.getDbServiceInstance();
+    const username = await request.user.username; // Get the username from request.user
+    
+    let { postID } = request.body;
 
-// update
+    let data = {
+        postID: postID,
+        tableName: "posts",
+        userColumn: "UserWhoLiked",
+        value: "likes",
+        username: username
+    }
 
-// delete
+    const result = db.increasePost(data)
+
+    result
+    .then(data => response.json({ success: true }))
+    .catch(err => console.log(err)) 
+
+    console.log(request.body);
+})
+
+//repost post
+app.post("/repost", (request,response) => {
+    const db = DBService.getDbServiceInstance();
+    const username = request.user.username; // Get the username from request.user
+
+    let { postID } = request.body;
+
+    let data = {
+        postID: postID,
+        tableName: "posts",
+        userColumn: "UserWhoReposted",
+        value: "reposts",
+        username: username
+    }
+
+    const result = db.increasePost(data)
+
+    result
+    .then(data => response.json({ success: true }))
+    .catch(err => console.log(err)) 
+
+    console.log(request.body);
+})
+
+//sign up
+app.post("/sign-up", async (request,response) => {
+    try{ 
+    console.log(request.body)
+    const { email, username, password, password_confirm } = request.body;
+
+    if (password !== password_confirm) {
+        return response.send("<h1>404</h1>")
+    }
+
+    const hashedPassword = await bcrypt.hash(password,10)
+    const db = DBService.getDbServiceInstance();
+
+    let userData = {
+        email: email,
+        username: username,
+        password: hashedPassword,
+    }
+
+    const result = await db.createNewUser(userData, response).catch(err => console.log(err));
+
+    result
+    .then(data => response.send("<h1>Sign Up Success!</h1>"))
+    .catch(err => console.log(err)) 
+    }
+    catch(err){
+        console.log(err)
+    }
+ })
+
+ //user login
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+}))
+
+//user logout
+app.post('/logout', function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  });
+
 
 app.listen(port, () => {
     console.log(`Server Online http://${ip}:${port}/`)
 })
-

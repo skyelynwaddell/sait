@@ -1,13 +1,20 @@
+//On load Read Data 
 document.addEventListener("DOMContentLoaded", () => {
     fetch("http://localhost:5000/")
     .then(request => response.json())
     .then(data => console.log(data));
 })
 
-const postButton   = document.querySelector("#addPostButton");
-const signupButton = document.querySelector("#signupButton")
-const loginButton  = document.querySelector("#loginButton")
+//Select all the buttons that can be used for post requests
+const postButton       = document.querySelector("#addPostButton");
+const signupButton     = document.querySelector("#signupButton");
+const loginButton      = document.querySelector("#loginButton");
+const deletePostButton = document.querySelectorAll(".btnDelete")
+const likePostButton   = document.querySelectorAll(".postLikes")
+const repostButton     = document.querySelectorAll(".postReposts")
+const logoutButton     = document.getElementById("logoutButton")
 
+//Create a new post
 postButton.onclick = function(){
     let content = document.getElementById("newPostText").value;
     document.getElementById("newPostText").value = "";
@@ -28,6 +35,88 @@ postButton.onclick = function(){
     .catch(err => console.log(err))
 }
 
+//Logout
+logoutButton.onclick = function(){
+   const form = document.createElement("form");
+   form.method = "POST";
+   form.action = "/logout";
+   document.body.appendChild(form);
+   form.submit();
+}
+
+//Like a post
+likePostButton.forEach((button, index) => {
+    button.onclick = function(){
+
+        let postID = button.dataset.postId;
+
+        fetch(`http://localhost:5000/like-post`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                postID: postID
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            insertRowIntoTable(data['data']);
+            location.reload(true);
+        })
+        .catch(err => console.log(err))
+    }
+})
+
+//Repost a post
+repostButton.forEach((button, index) => {
+    button.onclick = function(){
+
+        let postID = button.dataset.postId;
+
+        fetch(`http://localhost:5000/repost`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                postID: postID
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            insertRowIntoTable(data['data']);
+            location.reload(true);
+        })
+        .catch(err => console.log(err))
+    }
+})
+
+//Delete a post
+deletePostButton.forEach((button, index) => {
+    button.onclick = function(){
+
+        let postID = button.dataset.postId;
+
+        fetch("http://localhost:5000/delete-post", {
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                postID: postID,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            insertRowIntoTable(data['data']);
+            location.reload(true);
+        })
+        .catch(err => console.log(err))
+    } 
+})
+
+//User sign up
 signupButton.onclick = function(){
     let email = document.querySelector("#inputEmail").value
     let username = document.querySelector("#inputUsername").value
@@ -49,6 +138,32 @@ signupButton.onclick = function(){
             username: username,
             password: password,
             password_confirm: password_confirm,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        insertRowIntoTable(data['data']);
+        location.reload(true);
+    })
+    .catch(err => console.log(err))
+}
+
+//User sign up
+loginButton.onclick = function(){
+    let email = document.querySelector("#inputEmail").value
+    let password = document.querySelector("#inputPassword1").value
+    
+    document.getElementById("inputEmail").value     = "";
+    document.getElementById("inputPassword1").value = "";
+
+    fetch("http://localhost:5000/login", {
+        headers : {
+            'Content-Type': "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({ 
+            email: email,
+            password: password,
         })
     })
     .then(response => response.json())
