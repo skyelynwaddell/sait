@@ -1,3 +1,6 @@
+//Skye Waddell Node.JS | Day 8 - 13 CPNT-262
+//May 2024
+
 const { response } = require("express");
 const mysql = require("mysql");
 let instance = null;
@@ -215,7 +218,7 @@ class DBService{
 
             // Second query: Insert into users_posts
             await new Promise((resolve, reject) => {
-                const query2 = "INSERT INTO `users_posts` (postID_FK, username_FK) VALUES (?, ?);";
+                const query2 = "INSERT INTO `users_posts` (postID, username) VALUES (?, ?);";
                 sql.query(query2, [insertId, data.username], (err, result) => {
                     if (err) {
                         console.error("Error inserting into users_posts:", err.message);

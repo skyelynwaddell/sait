@@ -3,9 +3,13 @@
 //May 2024 
 -->
 
-<%- include("./components/header", { title: "Login" }) -%>
+<%- include("./components/header", { title: "404 Page Not Found" }) -%>
 <body>
-    <%- include("./components/navbar") -%>
+    <% if (userData) { %>
+        <%- include("./components/navbarLoggedin") -%>
+    <% } else { %>
+        <%- include("./components/navbar") -%>
+    <% } %>
     <main>
         <section class="mainWrapper">
         <% if (userData) { %>
@@ -13,8 +17,9 @@
         <% } else { %>
              <%- include("./components/sidebarWelcome") -%>
         <% } %>
-        <% if (messages.error) { messages.error } %>
-        <%- include("./components/loginForm") -%>
+
+        <%- include("./components/404form") -%>
+
         </section>
     </main>
     <%- include("./components/footer") -%>

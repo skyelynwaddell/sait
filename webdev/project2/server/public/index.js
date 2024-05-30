@@ -14,9 +14,20 @@ const likePostButton   = document.querySelectorAll(".postLikes")
 const repostButton     = document.querySelectorAll(".postReposts")
 const logoutButton     = document.getElementById("logoutButton")
 
+
+function resetPostText(){
+    document.getElementById("newPostText").placeholder = "Write new post..."
+}
+
 //Create a new post
 postButton.onclick = function(){
     let content = document.getElementById("newPostText").value;
+
+    if (content.length <= 0) {
+        document.getElementById("newPostText").placeholder = "Your post must not be empty..."
+        return;
+    }
+
     document.getElementById("newPostText").value = "";
 
     fetch("http://localhost:5000/create-post", {

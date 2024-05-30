@@ -1,33 +1,33 @@
-//Skye Waddell Node.JS | Day 8 - 13
-const express   = require("express");
-const app       = express();
-const path      = require("path");
-const mysql     = require("mysql");
-const modules   = require("./modules.js");
-const session   = require("express-session");
-const bcrypt    = require("bcrypt");
-const passport  = require("passport");
-const flash     = require("express-flash");
+//Skye Waddell Node.JS | Day 8 - 13 CPNT-262
+//May 2024
+
+const express = require("express");
+const app = express();
+const path = require("path");
+const mysql = require("mysql");
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const flash = require("express-flash");
 const DBService = require("./database.js");
 const initPassport = require("./passport-config.js");
 
-const ip   = "localhost";
+const ip = "localhost";
 const port = 5000;
-var users = [];
 let db = DBService.getDbServiceInstance();
 
-initPassport(passport,db.getUserByEmail);
+initPassport(passport, db.getUserByEmail);
 
-app.set("view engine","ejs");
+app.set("view engine", "ejs");
 app.use(flash());
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(express.static(__dirname + '/public/'));
 
 app.use(session({
-    secret : "h7K@s^4CF@d4$@#T%sdDSUF@3rk3!23v$#%",
-    resave : false,
-    saveUninitialized : false, 
+    secret: "h7K@s^4CF@d4$@#T%sdDSUF@3rk3!23v$#%",
+    resave: false,
+    saveUninitialized: false,
 }))
 
 app.use(passport.initialize());
@@ -37,14 +37,14 @@ app.use(passport.session());
 const ensureAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         if (req.path === "/login" || req.path === "/sign-up") {
-            return res.redirect("/"); 
-        } 
+            return res.redirect("/");
+        }
         return next();
     }
     // If user is not authenticated and not on the login/register page, redirect to login page
     if (req.path !== "/login" && req.path !== "/sign-up") {
         return res.redirect("/login");
-    } 
+    }
     // If user is not authenticated but on the login/register page, or is already on the login page, proceed to the next middleware
     next();
 };
@@ -55,95 +55,106 @@ app.use((req, res, next) => {
 });
 
 // homepage / read
-app.get("/", (request,response) => {
+app.get("/", (request, response) => {
     const db = DBService.getDbServiceInstance();
     const postsPerPage = 25;
 
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
 
-    console.log(request.session);
+    //console.log(request.session);
 
-    Promise.all([postDataPromise,userDataPromise])
-    .then(([postData,userData]) => {
+    Promise.all([postDataPromise, userDataPromise])
+        .then(([postData, userData]) => {
 
-        let profileData = request.user// === undefined ? userDataPromise : request.user;
+            let profileData = request.user;
 
-        response.render("index", {
-            userData: profileData,
-            allUsers: userData,
-            postData: postData.slice().reverse().splice(0,postsPerPage),
-            recommendedUsers: userData
+            response.render("index", {
+                userData: profileData,
+                allUsers: userData,
+                postData: postData.slice().reverse().splice(0, postsPerPage),
+                recommendedUsers: userData
+            })
+            console.log(postData)
+
         })
-        console.log(postData)
-
-    })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
 })
 
 // signup page
-app.get("/sign-up", (request,response) => {
+app.get("/sign-up", (request, response) => {
     const db = DBService.getDbServiceInstance();
     const postsPerPage = 25;
 
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
 
-    Promise.all([postDataPromise,userDataPromise])
-    .then(([postData,userData]) => {
-        let profileData = request.user //=== undefined ? userDataPromise : request.user;
+    Promise.all([postDataPromise, userDataPromise])
+        .then(([postData, userData]) => {
+            let profileData = request.user;
 
-        response.render("sign-up", {
-            userData: profileData,
-            allUsers: userData,
-            postData: postData.slice().reverse().splice(0,postsPerPage),
-            recommendedUsers: userData
+            response.render("sign-up", {
+                userData: profileData,
+                allUsers: userData,
+                postData: postData.slice().reverse().splice(0, postsPerPage),
+                recommendedUsers: userData
+            })
         })
-    })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
 })
 
 // login page
-app.get("/login", (request,response) => {
+app.get("/login", (request, response) => {
     const db = DBService.getDbServiceInstance();
     const postsPerPage = 25;
 
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
 
-    Promise.all([postDataPromise,userDataPromise])
-    .then(([postData,userData]) => {
-        let profileData = request.user //=== undefined ? userDataPromise : request.user;
-        response.render("login", {
-            userData: profileData,
-            allUsers: userData,
-            postData: postData.slice().reverse().splice(0,postsPerPage),
-            recommendedUsers: userData
+    Promise.all([postDataPromise, userDataPromise])
+        .then(([postData, userData]) => {
+            let profileData = request.user;
+            response.render("login", {
+                userData: profileData,
+                allUsers: userData,
+                postData: postData.slice().reverse().splice(0, postsPerPage),
+                recommendedUsers: userData
+            })
         })
-    })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
 })
 
 //create new post
-app.post("/create-post", (request,response) => {
+app.post("/create-post", (request, response) => {
     const username = request.user.username; // Get the username from request.user
     const { content } = request.body;
     const db = DBService.getDbServiceInstance();
 
-    const data = {
-        username: username,
-        content: content,
+    const isPostNotEmpty = (input) => {
+        const notEmptyRegex = /^.+$/;
+        return notEmptyRegex.test(input);
     }
 
-    const result = db.insertNewPost(data);
+    //verify that the post isn't empty before we submit it.
+    if (isPostNotEmpty(content)) {
+        const data = {
+            username: username,
+            content: content,
+        }
 
-    result
-    .then(data => response.json({ success: true }))
-    .catch(err => console.log(err)) 
- })
+        const result = db.insertNewPost(data);
 
- //delete post
- app.post("/delete-post", (request,response) => {
+        result
+            .then(data => response.json({ success: true }))
+            .catch(err => console.log(err))
+    } else {
+        console.log("Post content must not be empty...")
+        return null;
+    }
+})
+
+//delete post
+app.post("/delete-post", (request, response) => {
     const db = DBService.getDbServiceInstance();
     const username = request.user.username; // Get the username from request.user
 
@@ -158,17 +169,17 @@ app.post("/create-post", (request,response) => {
     const result = db.deletePost(data)
 
     result
-    .then(data => response.json({ success: true }))
-    .catch(err => console.log(err)) 
+        .then(data => response.json({ success: true }))
+        .catch(err => console.log(err))
 
-    console.log(request.body);
- })
+    //console.log(request.body);
+})
 
 //like/dislike post
-app.post("/like-post", async (request,response) => {
+app.post("/like-post", async (request, response) => {
     const db = DBService.getDbServiceInstance();
     const username = await request.user.username; // Get the username from request.user
-    
+
     let { postID } = request.body;
 
     let data = {
@@ -182,14 +193,14 @@ app.post("/like-post", async (request,response) => {
     const result = db.increasePost(data)
 
     result
-    .then(data => response.json({ success: true }))
-    .catch(err => console.log(err)) 
+        .then(data => response.json({ success: true }))
+        .catch(err => console.log(err))
 
-    console.log(request.body);
+    //console.log(request.body);
 })
 
 //repost post
-app.post("/repost", (request,response) => {
+app.post("/repost", (request, response) => {
     const db = DBService.getDbServiceInstance();
     const username = request.user.username; // Get the username from request.user
 
@@ -206,43 +217,114 @@ app.post("/repost", (request,response) => {
     const result = db.increasePost(data)
 
     result
-    .then(data => response.json({ success: true }))
-    .catch(err => console.log(err)) 
+        .then(data => response.json({ success: true }))
+        .catch(err => console.log(err))
 
-    console.log(request.body);
+    //console.log(request.body);
 })
 
 //sign up
-app.post("/sign-up", async (request,response) => {
-    try{ 
-    console.log(request.body)
-    const { email, username, password, password_confirm } = request.body;
+app.post("/sign-up", async (request, response) => {
+    try {
+        console.log(request.body)
+        const { email, username, password, password_confirm } = request.body;
 
-    if (password !== password_confirm) {
-        return response.send("<h1>404</h1>")
+        if (password !== password_confirm) {
+            return response.send("<h1>Password's do not match!</h1>")
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const db = DBService.getDbServiceInstance();
+
+        let userData = {
+            email: email,
+            username: username,
+            password: hashedPassword,
+        }
+
+        const result = await db.createNewUser(userData, response).catch(err => console.log(err));
+
+        result
+            .then(data => response.send("<h1>Sign Up Success!</h1>"))
+            .catch(err => console.log(err))
     }
-
-    const hashedPassword = await bcrypt.hash(password,10)
-    const db = DBService.getDbServiceInstance();
-
-    let userData = {
-        email: email,
-        username: username,
-        password: hashedPassword,
-    }
-
-    const result = await db.createNewUser(userData, response).catch(err => console.log(err));
-
-    result
-    .then(data => response.send("<h1>Sign Up Success!</h1>"))
-    .catch(err => console.log(err)) 
-    }
-    catch(err){
+    catch (err) {
         console.log(err)
     }
- })
+})
 
- //user login
+//contact page
+app.get("/contact", (request, response) => {
+    const db = DBService.getDbServiceInstance();
+
+    const userDataPromise = db.getData("users");
+
+    //console.log(request.session);
+
+    Promise.all([userDataPromise])
+        .then(([userData]) => {
+
+            let profileData = request.user;
+
+            response.render("contact", {
+                userData: profileData,
+                allUsers: userData,
+                recommendedUsers: userData
+            })
+        })
+        .catch(err => console.log(err))
+})
+
+app.post("/contact", (req, res) => {
+    console.log(req.body)
+    res.redirect("/thankyou")
+})
+
+//thank you page
+app.get("/thankyou", (request, response) => {
+    const db = DBService.getDbServiceInstance();
+
+    const userDataPromise = db.getData("users");
+
+    //console.log(request.session);
+
+    Promise.all([userDataPromise])
+        .then(([userData]) => {
+
+            let profileData = request.user;
+
+            response.render("thankyou", {
+                userData: profileData,
+                allUsers: userData,
+                recommendedUsers: userData
+            })
+        })
+        .catch(err => console.log(err))
+})
+
+//about us page
+app.get("/about-us", (request, response) => {
+    const db = DBService.getDbServiceInstance();
+
+    const userDataPromise = db.getData("users");
+
+    //console.log(request.session);
+
+    Promise.all([userDataPromise])
+        .then(([userData]) => {
+
+            let profileData = request.user;
+
+            response.render("about-us", {
+                userData: profileData,
+                allUsers: userData,
+                recommendedUsers: userData
+            })
+        })
+        .catch(err => console.log(err))
+})
+
+//user login
 app.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
@@ -250,13 +332,34 @@ app.post("/login", passport.authenticate("local", {
 }))
 
 //user logout
-app.post('/logout', function(req, res, next) {
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      res.redirect('/');
+app.post('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
     });
-  });
+});
 
+//404 middleware
+app.use((request, response, next) => {
+    const db = DBService.getDbServiceInstance();
+
+    const userDataPromise = db.getData("users");
+
+    //console.log(request.session);
+
+    Promise.all([userDataPromise])
+        .then(([userData]) => {
+
+            let profileData = request.user;
+
+            response.status(404).render("404", {
+                userData: profileData,
+                allUsers: userData,
+                recommendedUsers: userData
+            })
+        })
+        .catch(err => console.log(err))
+})
 
 app.listen(port, () => {
     console.log(`Server Online http://${ip}:${port}/`)

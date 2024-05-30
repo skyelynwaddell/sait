@@ -1,3 +1,6 @@
+//Skye Waddell Node.JS | Day 8 - 13 CPNT-262
+//May 2024
+
 const localStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 
