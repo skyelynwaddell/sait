@@ -14,7 +14,7 @@ const initPassport = require("./passport-config.js");
 
 const ip = "localhost";
 const port = 5000;
-let db = DBService.getDbServiceInstance();
+var db = DBService.getDbServiceInstance();
 const postsPerPage = 25;
 
 initPassport(passport, db.getUserByEmail);
@@ -36,6 +36,8 @@ app.use(passport.session());
 
 //Authenticate that we are logged in, or else limit site exploration to the login / register page
 const ensureAuthenticated = (req, res, next) => {
+
+    //if we're logged in restrict access to the login/signup page
     if (req.isAuthenticated()) {
         if (req.path === "/login" || req.path === "/sign-up") {
             return res.redirect("/");
@@ -50,19 +52,17 @@ const ensureAuthenticated = (req, res, next) => {
     next();
 };
 
-// Apply the ensureAuthenticated middleware to all routes except /login and /register
+// Apply the ensureAuthenticated middleware to all routes
 app.use((req, res, next) => {
     ensureAuthenticated(req, res, next);
 });
 
-// homepage / read
+// homepage
 app.get("/", (request, response) => {
     const db = DBService.getDbServiceInstance();
 
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
-
-    //console.log(request.session);
 
     Promise.all([postDataPromise, userDataPromise])
         .then(([postData, userData]) => {
@@ -90,6 +90,7 @@ app.get("/sign-up", (request, response) => {
 
     Promise.all([postDataPromise, userDataPromise])
         .then(([postData, userData]) => {
+
             let profileData = request.user;
 
             response.render("sign-up", {
@@ -111,7 +112,9 @@ app.get("/login", (request, response) => {
 
     Promise.all([postDataPromise, userDataPromise])
         .then(([postData, userData]) => {
+
             let profileData = request.user;
+
             response.render("login", {
                 userData: profileData,
                 allUsers: userData,
@@ -164,7 +167,7 @@ app.post("/delete-post", (request, response) => {
         username: username,
     }
 
-    const result = db.deletePost(data)
+    const result = db.deletePost(data);
 
     result
         .then(data => response.json({ success: true }))
@@ -231,7 +234,7 @@ app.post("/sign-up", async (request, response) => {
             return response.send("<h1>Password's do not match!</h1>")
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const hashedPassword = await bcrypt.hash(password, 10) //salt the password x10
         const db = DBService.getDbServiceInstance();
 
         let userData = {
@@ -257,8 +260,6 @@ app.get("/contact", (request, response) => {
 
     const userDataPromise = db.getData("users");
 
-    //console.log(request.session);
-
     Promise.all([userDataPromise])
         .then(([userData]) => {
 
@@ -273,9 +274,20 @@ app.get("/contact", (request, response) => {
         .catch(err => console.log(err))
 })
 
-app.post("/contact", (req, res) => {
-    console.log(req.body)
-    res.redirect("/thankyou")
+//submit contact form
+app.post("/contact", async (req, res) => {
+    try{
+        console.log(req.body)
+        const { contact } = req.body;
+        console.log(contact)
+        
+        const db = DBService.getDbServiceInstance();
+        await db.contactSubmit(contact,res);
+
+        res.redirect("/thankyou");
+    }catch(err){
+        console.log(err);
+    }
 })
 
 //thank you page
@@ -283,8 +295,6 @@ app.get("/thankyou", (request, response) => {
     const db = DBService.getDbServiceInstance();
 
     const userDataPromise = db.getData("users");
-
-    //console.log(request.session);
 
     Promise.all([userDataPromise])
         .then(([userData]) => {
@@ -305,8 +315,6 @@ app.get("/about-us", (request, response) => {
     const db = DBService.getDbServiceInstance();
 
     const userDataPromise = db.getData("users");
-
-    //console.log(request.session);
 
     Promise.all([userDataPromise])
         .then(([userData]) => {
@@ -342,8 +350,6 @@ app.use((request, response, next) => {
     const db = DBService.getDbServiceInstance();
 
     const userDataPromise = db.getData("users");
-
-    //console.log(request.session);
 
     Promise.all([userDataPromise])
         .then(([userData]) => {

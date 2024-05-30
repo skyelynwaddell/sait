@@ -188,6 +188,29 @@ class DBService{
         }
     }
 
+    //contact submission
+    async contactSubmit(data,res){
+        try{
+            const contactquery = await new Promise((resolve,reject) => {
+                const query = "INSERT INTO contact (content) VALUES (?);";
+
+                sql.query(query, [data] , (err,result) => {
+                    if (err) { 
+                        res.send("Error sending comment.");
+                        return reject(new Error(err.message)); 
+                    }
+                    resolve(result.insertId);
+                })
+            })
+
+            res.redirect("/thankyou")
+        } 
+        catch(err) { 
+            console.log(err);
+            res.redirect("404");
+        }
+    }
+
     //create new post
     async insertNewPost(data) {
         try {

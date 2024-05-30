@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 30, 2024 at 04:26 AM
+-- Generation Time: May 30, 2024 at 06:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -85,14 +85,6 @@ CREATE TABLE `posts` (
   `time` time NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id`, `username`, `content`, `likes`, `reposts`, `comments`, `date`, `time`) VALUES
-(75, 'skye97', 'vvvv', 0, 0, 0, '2024-05-29', '20:19:16'),
-(76, 'skye97', 'hey', 0, 0, 0, '2024-05-29', '20:22:04');
-
 -- --------------------------------------------------------
 
 --
@@ -120,14 +112,6 @@ CREATE TABLE `users` (
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`email`, `username`, `password`, `posts`, `following`, `followers`, `date`) VALUES
-('apple@gmail.com', 'skye', '$2b$10$suk6IYW2tFfdwWKIiLbHZ.GVcZtG2zTj67zTy8McErcg0PL8mBp4C', 0, 0, 0, '2024-05-29'),
-('dillonleewaddell@gmail.com', 'skye97', '$2b$10$SHvX0pCHo0ipZNhAC86g2.oOZh8GucW6m6VZSKQUGCM81LYlaXI42', 2, 0, 0, '2024-05-29');
-
 -- --------------------------------------------------------
 
 --
@@ -138,14 +122,6 @@ CREATE TABLE `users_posts` (
   `postID` int(255) NOT NULL,
   `username` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users_posts`
---
-
-INSERT INTO `users_posts` (`postID`, `username`) VALUES
-(75, 'skye97'),
-(76, 'skye97');
 
 --
 -- Indexes for dumped tables
