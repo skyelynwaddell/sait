@@ -159,7 +159,7 @@ signupButton.onclick = function(){
     .catch(err => console.log(err))
 }
 
-//User sign up
+//User login
 loginButton.onclick = function(){
     let email = document.querySelector("#inputEmail").value
     let password = document.querySelector("#inputPassword1").value

@@ -1,5 +1,5 @@
 //Skye Waddell Node.JS | Day 8 - 13 CPNT-262
-//May 2024
+//May 2024 👽
 
 const express = require("express");
 const app = express();
@@ -15,6 +15,7 @@ const initPassport = require("./passport-config.js");
 const ip = "localhost";
 const port = 5000;
 let db = DBService.getDbServiceInstance();
+const postsPerPage = 25;
 
 initPassport(passport, db.getUserByEmail);
 
@@ -57,7 +58,6 @@ app.use((req, res, next) => {
 // homepage / read
 app.get("/", (request, response) => {
     const db = DBService.getDbServiceInstance();
-    const postsPerPage = 25;
 
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
@@ -84,7 +84,6 @@ app.get("/", (request, response) => {
 // signup page
 app.get("/sign-up", (request, response) => {
     const db = DBService.getDbServiceInstance();
-    const postsPerPage = 25;
 
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
@@ -106,7 +105,6 @@ app.get("/sign-up", (request, response) => {
 // login page
 app.get("/login", (request, response) => {
     const db = DBService.getDbServiceInstance();
-    const postsPerPage = 25;
 
     const postDataPromise = db.getData("posts");
     const userDataPromise = db.getData("users");
@@ -117,7 +115,7 @@ app.get("/login", (request, response) => {
             response.render("login", {
                 userData: profileData,
                 allUsers: userData,
-                postData: postData.slice().reverse().splice(0, postsPerPage),
+                postData: postData.reverse().splice(0, postsPerPage),
                 recommendedUsers: userData
             })
         })

@@ -50,7 +50,7 @@ class DBService{
                         console.error("Error deleting post:", err.message);
                         reject(err);
                     } else {
-                        console.log("Post deleted successfully:", result);
+                        //console.log("Post deleted successfully:", result);
                         resolve(result);
                     }
                 });
@@ -64,7 +64,7 @@ class DBService{
                         console.error("Error updating post count:", err.message);
                         reject(err);
                     } else {
-                        console.log("Updated post count:", result);
+                        //console.log("Updated post count:", result);
                         resolve(result);
                     }
                 });
@@ -134,7 +134,7 @@ class DBService{
                             console.log(err.message);
                             return reject(new Error(err.message));
                         }
-                        console.log("Inserted into likes:", result);
+                        //console.log("Inserted into likes:", result);
                         resolve(result);
                     });
                 });
@@ -184,7 +184,7 @@ class DBService{
         } 
         catch(err) { 
             console.log(err);
-            res.send("Error 404: Page Not Found!");
+            res.redirect("404");
         }
     }
 
@@ -194,7 +194,7 @@ class DBService{
             let date = new Date();
 
             const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const month = String(date.getMonth() + 1).padStart(2, '0');
             const day = String(date.getDate()).padStart(2, '0');
             const hours = String(date.getHours()).padStart(2, '0');
             const minutes = String(date.getMinutes()).padStart(2, '0');
@@ -210,7 +210,7 @@ class DBService{
                         console.error("Error inserting into posts:", err.message);
                         reject(new Error(err.message));
                     } else {
-                        console.log("Inserted post with ID:", result.insertId); // Log the insertId
+                        //console.log("Inserted post with ID:", result.insertId); 
                         resolve(result.insertId);
                     }
                 });
@@ -224,7 +224,7 @@ class DBService{
                         console.error("Error inserting into users_posts:", err.message);
                         reject(new Error(err.message));
                     } else {
-                        console.log("Inserted into users_posts:", result); // Log the result
+                        //console.log("Inserted into users_posts:", result); 
                         resolve(result);
                     }
                 });
@@ -238,7 +238,7 @@ class DBService{
                         console.error("Error updating post count:", err.message);
                         reject(new Error(err.message));
                     } else {
-                        console.log("Updated post count:", result); // Log the result
+                        //console.log("Updated post count:", result); 
                         resolve(result);
                     }
                 });
