@@ -1,0 +1,148 @@
+<!-- Created by Skye Waddell -->
+<!-- May 2024 | OOSD - Web Development | Travel Project -->
+<!-- CRPG-210-A -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Types</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous">
+    </script>
+
+  </head>
+
+  <body>
+
+    <!-- Blurry Background div -->
+    <div class="blurry-background"></div>
+
+    <!-- Container that holds all the website contents -->
+    <div class="container">
+
+      <!-- Navbar -->
+      <div id="navbarContainer"></div>
+
+      <!-- Banner -->
+      <div id="banner"></div>
+
+      <!-- Main Content -->
+      <fieldset class="outter-container">
+        <table>
+          <tr>
+            <th>
+
+              <!-- Input types section -->
+              <div class="inner-container">
+                <h1 class="title">Input Types</h1>
+                <hr />
+                <div class="outter-bubble">
+                  <table>
+                    <tr>
+                      <th class="bubble">
+                        <div class="registerForms" id="inputTypes"></div>
+
+                        <var>var</var>
+
+                        <label for="pre" class="registerForms">pre</label>
+
+                        <!-- pre text adds spaces to text so we must keep it the left out of indentation -->
+                        <pre id="pre">
+//code can go in here
+function print(text){
+  console.log(text);
+}
+</pre>
+
+                        <label for="code" class="registerForms">code</label>
+
+                        <code>
+                          function print(text) {
+                          console.log(text)
+                          }
+                        </code>
+
+                        <label for="code" class="registerForms">progress</label>
+                        <progress></progress>
+
+                        <label for="code" class="registerForms">q</label>
+                        <q>quotations</q>
+
+                        <div class="registerForms">
+                          <label for="dropdown">select</label>
+                          <select class="inputBoxes" name="dropdown"
+                            id="dropdown">
+                            <option value="1">option 1</option>
+                            <option value="2">option 2</option>
+                            <option value="3">option 3</option>
+                          </select>
+                        </div>
+
+                        <div class="registerForms">
+                          <label for="bootstrap button">bootstrap button</label>
+                          <button class="btn btn-primary">bootstrap
+                            button</button>
+                        </div>
+
+                        <br>
+
+                        <div class="registerForms">
+                          <label for="meter">meter</label>
+                          <meter name="meter" id="meter"
+                            value="0.5">meter</meter>
+                          <p id="meter-text"></p>
+
+                          <div class="meter-buttons">
+                            <button class="btn btn-primary"
+                              onclick="increasePercent(false,0.1)">-</button>
+                            <button class="btn btn-primary"
+                              onclick="increasePercent(true,0.1)">+</button>
+                          </div>
+
+                      <script>
+
+                        var percent = 0.1;
+                        var meter = document.getElementById("meter");
+                        var roundedPercent = Math.round(percent * 100);
+                        meter.value = percent;
+
+                        document.getElementById('meter-text').innerHTML +=
+                        `${roundedPercent}%`;
+              
+                      </script>
+
+                          <p></p>
+                        </div>
+
+                      </th>
+                    </tr>
+                  </table>
+                </div>
+              </th>
+            </tr>
+          </table>
+
+        </fieldset>
+
+        <footer id="footer"></footer>
+      </div>
+
+      <!-- Javascript -->
+      <script src="index.js"></script>
+    </body>
+  </html>

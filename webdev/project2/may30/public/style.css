@@ -1,0 +1,87 @@
+h1{
+    background-color: rgba(0, 0, 0, 0.207);
+    margin:10px;
+    padding:10px;
+    border-radius: 10px;
+}
+
+body,html{
+    background-color: black;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    gap:10px;
+    background-color: rgb(52, 52, 52);
+    padding:10px;
+}
+
+#availableText{
+    padding:10px;
+    background-color: rgba(0, 0, 0, 0.252);
+    display: none;
+    border-radius: 10px;
+
+}
+
+.logo{
+    width:200px;
+}
+
+.navItems{
+    display: flex;
+    flex-direction: row;
+}
+
+.navLink{
+    font-size: large;
+    color:white;
+    text-decoration:solid;
+    padding:10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.main{
+    text-align: center;
+    margin:10px;
+    background-color: grey;
+    border-radius: 10px;
+    padding:10px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputSection{
+    width:300px;
+    display: flex;
+    margin:5px;
+    justify-content: center;
+}
+
+.inputLabel{
+    text-align: left;
+    width:200px;
+    height:30px;
+    margin:5px;
+}
+
+.inputBox{
+    width:200px;
+    right:0;
+    position: flex-end;
+}
+
+.btn-purple{
+    background-color: rgb(164, 74, 210);
+    border: 0;
+    margin:20px;
+}

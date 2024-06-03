@@ -1,0 +1,22 @@
+ <div class="innerContainer">
+        <div class="picAndStats">
+            <div class="picAndContent">
+                <img class="postPicture link" src="./img/logo.jpeg" alt="">
+                <div class="postNameContentContainer">
+                    <h1 class="postUsername link"><%= post.username %></h1>
+                    <h3 class="postContent"><%= post.content %></h3>
+                    <!-- <h3>id: <%= post.id %></h3> -->
+                </div>
+                <% if (userData && userData.username === post.username) { %>
+                    <button data-post-id=<%= post.id %> class="btn btn-danger btnDelete">🆇</button>
+                <% } %>            
+            </div>
+
+            <div class="postStats">
+                <button data-post-id=<%= post.id %> class="btn btn-purple postText postLikes">❤️ <%= post.likes %></button>
+                <button data-post-id=<%= post.id %> class="btn btn-purple postText postReposts">♻️ <%= post.reposts %></button>
+                <button class="btn btn-purple postText postComments">💬 <%= post.comments %></button>
+            </div>
+
+        </div>
+    </div>

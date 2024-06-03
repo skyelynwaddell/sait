@@ -1,0 +1,123 @@
+<!-- Created by Skye Waddell -->
+<!-- May 2024 | OOSD - Web Development | Travel Project -->
+<!-- CRPG-210-A -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jquery</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous">
+    </script>
+
+  </head>
+  <body>
+
+    <!-- Blurry Background div -->
+    <div class="blurry-background"></div>
+
+    <!-- Container that holds all the website contents -->
+    <div class="container">
+
+      <!-- Navbar -->
+      <div id="navbarContainer"></div>
+
+      <!-- Banner -->
+      <div id="banner"></div>
+
+      <!-- Terms and Conditions fieldset -->
+      <fieldset class="outter-container">
+        <table>
+          <tr>
+            <th>
+              <div class="inner-container">
+                <h1 class="title">Jquery</h1>
+                <hr />
+                <div class="outter-bubble">
+                  <table>
+                    <tr>
+                      <th class="bubble">
+                        <h4>
+                          <img id="coinIcon" src="./img/coin1.png" alt="">
+                          <h1 id="coin">Loading...</h1>
+                          <button id="coinButton" class="btn btn-primary" onclick="loadCoin();">Flip Coin</button>
+
+                        </h4>
+                      </th>
+                    </tr>
+                  </table>
+                </table>
+              </fieldset>
+
+            <footer id="footer"></footer>
+          </div>
+
+          <!-- Jquery -->
+          <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+          <!-- Javascript -->
+          <script src="index.js"></script>
+
+          <script>
+
+            let loaded = false;
+
+            let toggleClass = function(){
+              $("#coinButton").toggleClass("btn-primary btn-danger")
+            }
+
+            let loadCoin = function(){
+              if (loaded === false) return;
+
+              $("#coinIcon").attr("src", "./img/coinFlip.gif" )
+
+              loaded = false;
+              $("#coin").html("Loading...");
+              $("#coin").css("color", "blue");
+
+              toggleClass();
+
+              setTimeout(() => start(), 1000)
+            }
+
+            let start = function(){
+
+              loaded = true;
+              let random   = Math.floor(Math.random() * 2);
+              let choice   = random === 1 ? "Heads 🪙" : "Tails 🪙";
+              let coinIcon = random === 1 ? "./img/coin2.png" : "./img/coin1.png";
+
+              $("#coinIcon").attr("src", coinIcon )
+
+              console.log(choice);
+
+              toggleClass();
+
+              $("#coin").css("color", "red");
+              $("#coin").html(choice);
+            }
+
+            //Both these lines below functionally do the same thing
+            
+            //$(document).ready(start);
+            $(start);
+
+          </script>
+
+        </body>
+      </html>

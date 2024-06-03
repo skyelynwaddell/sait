@@ -1,0 +1,233 @@
+<!-- Created by Skye Waddell -->
+<!-- May 2024 | OOSD - Web Development | Travel Project -->
+<!-- CRPG-210-A -->
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous">
+    </script>
+    
+  </head>
+
+  <body>
+
+    <!-- Blurry Background div -->
+    <div class="blurry-background"></div>
+
+    <!-- Container that holds all the website contents -->
+    <div class="container">
+      
+      <!-- Navbar -->
+      <div id="navbarContainer"></div>
+
+      <!-- Banner -->
+      <div id="banner"></div>
+
+      <!-- Main Container -->
+      <fieldset class="outter-container">
+        <table>
+          <tr>
+            <th>
+              <div class="inner-container">
+                <h1 class="title">Register</h1>
+                <hr />
+
+                <div class="outter-bubble">
+                  <table>
+                    <tr>
+                      <th class="bubble">
+
+                        <!-- Form Submission -->
+                        <form onsubmit="return registerButton();" id="registerForm" name="registerForm">
+                          <div class="registerForms">
+
+                             <!-- Dynamic Input Description -->
+                             <div class="inputDescription">
+                              <p id="inputDescription" class="strongPassword">Loading...</p>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Email: </p>
+                              <input required class="inputBox"
+                                autocomplete="email"
+                                onfocus="registerInputFocus('registerEmail');"
+                                onblur="registerInputBlur();"
+                                placeholder="Email" type="email" 
+                                name="Email"
+                                id="registerEmail" />
+                            </div>
+
+                            <!-- Username -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Username: </p>
+                              <input required class="inputBox"
+                                autocomplete="name"
+                                onfocus="registerInputFocus('registerUsername');"
+                                onblur="registerInputBlur();"
+                                placeholder="Username" type="name"
+                                name="Username"
+                                id="registerUsername" />
+                            </div>
+
+                            <!-- Password -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Password: </p>
+                              <input required class="inputBox"
+                                onfocus="registerInputFocus('registerPassword1');"
+                                onblur="registerInputBlur();"
+                                oninput="checkPasswordStrength(); matchPassword();"
+                                placeholder="Password" type="password"
+                                name="Password"
+                                id="registerPassword1" />
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Confirm Password: </p>
+                              <input required class="inputBox"
+                                onfocus="registerInputFocus('registerPassword2');"
+                                onblur="registerInputBlur();"
+                                oninput=" matchPassword();"
+                                placeholder="Confirm Password" type="password"
+                                name="Confirmed Password"
+                                id="registerPassword2" />
+                            </div>
+
+                            <!-- Country -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Country: </p>
+                              <select id="registerCountry"
+                                name="Country"
+                                onfocus="registerInputFocus('registerCountry');"
+                                onblur="registerInputBlur();"
+                                onchange="changeCountry(this);"
+                                >
+                                <option id="Canada" name="Canada" value="country1">Canada</option>
+                                <option id="USA" name="USA" value="country2">USA</option>
+                              </select>
+                              <br>
+                            </div>
+
+                            <!-- Province/State -->
+                            <div class="registerBlock">
+                              <p id="provinceText" class="registerLabel provinceText">Province</p>
+                              <input required class="inputBox"
+                                onfocus="registerInputFocus('registerProvince');"
+                                onblur="registerInputBlur();"
+                                placeholder="Province" type="state" 
+                                name="Province"
+                                id="registerProvince" />
+                            </div>
+
+                            <!-- City -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">City: </p>
+                              <input required class="inputBox"
+                                onfocus="registerInputFocus('registerCity');"
+                                onblur="registerInputBlur();"
+                                placeholder="City" type="city" 
+                                name="City"
+                                id="registerCity" />
+                            </div>
+
+                            <!-- Postal/Zip Code -->
+                            <div class="registerBlock">
+                              <p id="postalCodeText" class="registerLabel">Postal Code: </p>
+                              <input required class="inputBox"
+                                onfocus="registerInputFocus('postalCode');"
+                                onblur="registerInputBlur();"
+                                placeholder="Postal Code" type="text"
+                                name="Postal Code"
+                                id="postalCode" />
+                            </div>
+
+                            <!-- Travel Card -->
+                            <div class="registerBlock">
+                              <p class="registerLabel">Travel Card: </p>
+                              <input required class="inputBox"
+                                onfocus="registerInputFocus('travelCardNumber');"
+                                onblur="registerInputBlur();"
+                                placeholder="Travel Card No." type="number"
+                                name="Travel Card Number"
+                                id="travelCardNumber" min=1 max=999999999 />
+                            </div>
+
+                            <!-- Password Strength -->
+                            <div class="passStrength">
+                              <h2 id="strongPassword"
+                                class="strongPassword">Password Strength: WEAK
+                                ⛔</h2>
+                            </div>
+
+                            <!-- Do Passwords Match -->
+                            <div class="passwordMatch">
+                              <h2 id="passwordMatch"
+                                class="strongPassword">Password must not be
+                                empty.</h2>
+                            </div>
+
+                           
+
+                            <!-- Robot Check / Agree to terms -->
+                            <div class="bubble2">
+                              <div class="robotCheck">
+                                <p class="robotCheck">I agree to the <a
+                                    class="termsText"
+                                    href="./terms-conditions.html">terms
+                                    and conditions</a></p>
+                                <input type="checkbox" id="robotCheck"
+                                  required />
+                              </div>
+                            </div>
+
+                            <div>
+
+                              <!-- Reset Form Button -->
+                              <button type="reset"
+                                onclick="return resetButton()"
+                                class="btn btn-primary button">Reset</button>
+
+                              <!-- Sign Up Button -->
+                              <input value="Sign Up" type="submit"
+                                class="btn btn-primary button">
+                            </div>
+                          </form>
+                        </div>
+                      </th>
+                    </tr>
+                  </table>
+                </div>
+              </th>
+            </tr>
+          </table>
+        </fieldset>
+
+      <!-- Footer -->
+      <footer id="footer"></footer>
+      </div>
+
+      <!-- Javascript -->
+      <script src="index.js"></script>
+    </body>
+
+  </html>

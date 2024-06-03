@@ -1,0 +1,26 @@
+<!-- 
+//Skye Waddell Node.JS | Day 8 - 13 CPNT-262
+//May 2024 
+-->
+
+<%- include("./components/header", { title: "Thank You!" }) -%>
+<body>
+    <% if (userData) { %>
+        <%- include("./components/navbarLoggedin") -%>
+    <% } else { %>
+        <%- include("./components/navbar") -%>
+    <% } %>
+    <main>
+        <section class="mainWrapper">
+        <% if (userData) { %>
+             <%- include("./components/sidebar") -%>
+        <% } else { %>
+             <%- include("./components/sidebarWelcome") -%>
+        <% } %>
+
+        <%- include("./components/thankyouForm") -%>
+
+        </section>
+    </main>
+    <%- include("./components/footer") -%>
+</body>

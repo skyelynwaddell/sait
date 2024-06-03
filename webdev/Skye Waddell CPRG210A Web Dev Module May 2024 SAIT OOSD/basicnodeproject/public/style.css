@@ -1,0 +1,30 @@
+h1{
+    color:rgb(255, 255, 255);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+    padding:10px;
+}
+
+.innerContainer{
+    background-color: rgba(255, 255, 255, 0.375);
+    padding:20px;
+    border-radius: 10px;
+    margin:10px auto;
+    align-items: center;
+    text-align: center;
+}
+
+.btn{
+    margin:5px;
+}
+
+body,html{
+    background-color: rgb(31, 31, 31);
+}

@@ -1,0 +1,56 @@
+ <!-- Sidebar -->
+      <div class="row g-0">
+        <div class="sidebar col col-3">
+            <div class="sidebar">
+                <div class="myProfileContainer">
+
+                    <div class="myProfileNamePic">
+                        <img class="link myProfilePic" src="./img/logo.jpeg" alt="">
+                        <h3 class="link myProfileUsername"><%= userData.username %></h3>
+                    </div>
+
+                    <table class="table table-dark">
+                        <thead>
+                        <tr>
+                            <th>
+                                <!-- Posts -->
+                                <h3 class="myProfileStatText">Posts</h3>
+                                <h3 class="myProfileStatText"><%= userData.posts %></h3>
+                            </th>
+                            <th>
+                                <!-- Following -->
+                                <h3 class="myProfileStatText">Following</h3>
+                                <h3 class="myProfileStatText"><%= userData.following %></h3>
+                            </th>
+                            <th>
+                                <!-- Followers -->
+                                <h3 class="myProfileStatText">Followers</h3>
+                                <h3 class="myProfileStatText"><%= userData.followers %></h3>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <h1 class="sidebarTitle">Recommended</h1>
+
+                <!-- Sidebar Profile -->
+                <% recommendedUsers.forEach(user => { %>
+                <div class="sidebarProfile">
+                    <div class="sidebarRow">
+
+                        <!-- Sidebar Profile Picture -->
+                            <img class="sidebarPic link" src="./img/logo.jpeg" alt="">
+
+                        <!-- Sidebar Username -->
+                            <h1 class="sidebarName link"><%= user.username %></h1>
+                    </div>
+
+                    <!-- Sidebar View Count -->
+                    <button class="recommendedFollowButton btn btn-purple cWhite">Follow</button>
+                </div>
+                <% }); %>
+
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,41 @@
+<div class="postContainer">
+
+    <div class="newPostContainer">
+        <h3>Sign Up</h3>
+
+        <form action="/sign-up" method="POST">
+
+            <div class="signupTable">
+                <div class="signupCol">
+                    <div class="signupRow">
+                        <label class="inputLabel" for="inputEmail">Email</label>
+                        <input class="inputField" placeholder="Email" required id="inputEmail"
+                            type="email" name="email">
+                    </div>
+                    <div class="signupRow">
+                        <label class="inputLabel" for="inputUsername">Username</label>
+                        <input class="inputField" placeholder="Username" required id="inputUsername"
+                            type="text" name="username">
+                    </div>
+                    <div class="signupRow">
+                        <label class="inputLabel" for="inputPassword1">Password</label>
+                        <input class="inputField" placeholder="Password" required id="inputPassword1"
+                            type="password" name="password">
+                    </div>
+                    <div class="signupRow">
+                        <label class="inputLabel" for="inputPassword2">Confirm Password</label>
+                        <input class="inputField" placeholder="Confirm Password" required id="inputPassword2"
+                            type="password" name="password_confirm">
+                    </div>
+
+                    <div class="agreeToTerms">
+                        <label for="agreeToTerms">I Agree to Terms & Conditions</label>
+                        <input required id="agreeToTerms" type="checkbox" value="">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="signupButton" name="signupButton" class="btn btn-purple cWhite">Sign Up</button>
+        </form>
+    </div>
+</div>
