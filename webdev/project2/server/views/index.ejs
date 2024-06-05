@@ -16,6 +16,10 @@
             <div class="postContainer">
                 <%- include("./components/newpost") -%>
 
+                <form action="/delete-users" method="POST">
+                 <button id="deleteUsers" class="btn btn-danger">Delete All Users from Database Button (DONT PRESS UNLESS YOU WANT TO)</button>
+                </form>
+
                 <% postData.forEach(post => { %>
                     <%- include("./components/post", { post: post }) -%>
                 <% }); %>

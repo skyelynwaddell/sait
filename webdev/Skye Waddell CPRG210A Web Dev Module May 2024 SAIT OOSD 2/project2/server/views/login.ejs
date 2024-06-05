@@ -1,0 +1,21 @@
+<!-- 
+//Skye Waddell Node.JS | Day 8 - 13 CPNT-262
+//May 2024 
+-->
+
+<%- include("./components/header", { title: "Login" }) -%>
+<body>
+    <%- include("./components/navbar") -%>
+    <main>
+        <section class="mainWrapper">
+        <% if (userData) { %>
+             <%- include("./components/sidebar") -%>
+        <% } else { %>
+             <%- include("./components/sidebarWelcome") -%>
+        <% } %>
+        <% if (messages.error) { messages.error } %>
+        <%- include("./components/loginForm") -%>
+        </section>
+    </main>
+    <%- include("./components/footer") -%>
+</body>

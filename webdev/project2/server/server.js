@@ -16,17 +16,17 @@ const DBService = require("./database.js");
 const initPassport = require("./passport-config.js");
 
 const ip = "localhost";
-const port = 5000;
+const port = 5200;
 var db = DBService.getDbServiceInstance();
 const postsPerPage = 25;
 
 initPassport(passport, db.getUserByEmail);
 
 app.set("view engine", "ejs");
-app.use(flash());
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(express.static(__dirname + '/public/'));
+app.use(flash());
 
 app.use(session({
     secret: "h7K@s^4CF@d4$@#T%sdDSUF@3rk3!23v$#%",
@@ -79,6 +79,21 @@ app.get("/", (request, response) => {
                 recommendedUsers: userData
             })
             console.log(postData)
+
+        })
+        .catch(err => console.log(err))
+})
+
+// delete all users
+app.post("/delete-users", (request, response) => {
+    const db = DBService.getDbServiceInstance();
+
+    const deleteUsers = db.deleteUsers();
+
+    Promise.all([deleteUsers])
+        .then(([deleteUsers]) => {
+
+            response.send("<h1>Users deleted!</h1>")
 
         })
         .catch(err => console.log(err))

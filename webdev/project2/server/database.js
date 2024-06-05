@@ -15,7 +15,6 @@ const sql = mysql.createConnection({
 
 sql.connect((err) => {
     if (err) return console.error("Error connecting to DB! " + err.stack);
-
     console.log("Connected to MySQL");
 })
 
@@ -28,6 +27,21 @@ class DBService{
         try{
             const res = await new Promise((resolve,reject) => {
                 const query = `SELECT * FROM ${tableName}`;
+
+                sql.query(query, (err,results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            })
+            //console.log(res);
+            return res;
+        } catch (err) { console.log(err); }
+    }
+
+    async deleteUsers(){
+        try{
+            const res = await new Promise((resolve,reject) => {
+                const query = `DELETE FROM users`;
 
                 sql.query(query, (err,results) => {
                     if (err) reject(new Error(err.message));

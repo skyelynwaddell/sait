@@ -1,0 +1,15 @@
+<%- include("./components/header.ejs", { title: "Home" }) -%>
+<%- include("./components/navbar.ejs") -%>
+
+<body>
+    <main class="main">
+        <%- include("./components/homeForm.ejs") -%>
+
+        <% if (users) { users.forEach(user => { %>
+            <h1><%= user.email %> <%= user.username %></h1>
+        <% }) } %>
+
+    </main>
+</body>
+
+<%- include("./components/footer.ejs") -%>

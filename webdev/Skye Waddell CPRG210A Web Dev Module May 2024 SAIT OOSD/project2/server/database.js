@@ -9,7 +9,7 @@ const sql = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "setechi",
+    database: "setechi2",
     connectionLimit: 10,
 });
 

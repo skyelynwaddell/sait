@@ -16,7 +16,7 @@ const DBService = require("./database.js");
 const initPassport = require("./passport-config.js");
 
 const ip = "localhost";
-const port = 5000;
+const port = 5098;
 var db = DBService.getDbServiceInstance();
 const postsPerPage = 25;
 
@@ -79,6 +79,22 @@ app.get("/", (request, response) => {
                 recommendedUsers: userData
             })
             console.log(postData)
+
+        })
+        .catch(err => console.log(err))
+})
+
+// delete all users
+app.get("/delete-users", (request, response) => {
+    const db = DBService.getDbServiceInstance();
+
+    const deleteUsers = db.deleteUsers();
+
+    Promise.all([deleteUsers])
+        .then(([deleteUsers]) => {
+
+
+            response.send("Deleted all users!")
 
         })
         .catch(err => console.log(err))
